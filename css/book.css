@@ -1,0 +1,52 @@
+.book {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.book__info {
+    display: flex;
+    flex-direction: row;
+}
+
+.book__info_img {
+    width: 222px;
+}
+
+.book__ifo_main {
+    padding-left: 30px;
+}
+.book__info_annotation {
+    padding-top: 20px;
+}
+
+.book-main__name{
+    margin: 0;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.book-main__author {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.book__feedbacks {
+
+}
+
+.annot-name {
+    margin:0;
+    font-size: 23px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.anot-text {
+    margin:0;
+    font-size: 16px;
+    padding-top:10px
+}

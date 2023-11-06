@@ -18,49 +18,21 @@
   </head>
   <body class="body">
     <?php
-        include 'form.php'
-      ?>
-    <header class="top-header">
-        <div class="top-header__top">
-          <div class="top-header__container">
-            <div class="main-info">
-              <img class="main-info__logo" src="./images/logo.png">
-              <div class="user-menu">
-                <button data-custom-open="modal-1" href="#" type="submit" class="main-info__login">Войти</button>
-                <span class="main-info__registration">Регистрация</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="top-header__bottom">
-          <div class="top-header__container">
-            <ul class="menu-general">
-              <li class="menu-general__item">
-                <a class="menu-general__link">Жанры</a>
-              </li>
-              <li class="menu-general__item">
-                <a class="menu-general__link">Авторы</a>
-              </li>
-              <li class="menu-general__item">
-                <a class="menu-general__link">Новинки</a>
-              </li>
-              <li class="menu-general__item">
-                <a class="menu-general__link">Бестеллеры</a>
-              </li>
-              <li class="menu-general__item">
-                <a class="menu-general__link">Рейтинги</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-    </header>
+        include 'form_login.php'
+    ?>
+    <?php
+        include 'form_registration.php'
+    ?>
+    <?php
+        include 'header.php'
+    ?>
     <main class="page-content">
       <article class="main-block">
        <h2 class="main-block__headline">Новинки книг</h2>
        <div class="main-block__books">
         <ul class="books-list">
           <li class="books-list__item">
-            <a>
+            <a href="./book.php">
               <img class="books-list__item_img" src="./images/book1.jpg">
               <div class="books-list__item_info">
                 <a class="book-name">Путешествие в Элевсин</a>
