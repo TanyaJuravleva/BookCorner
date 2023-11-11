@@ -18,12 +18,6 @@
   </head>
   <body class="body">
     <?php
-        include 'form_login.php'
-    ?>
-    <?php
-        include 'form_registration.php'
-    ?>
-    <?php
         include 'header.php'
     ?>
     <main class="page-content">
@@ -32,11 +26,11 @@
        <div class="main-block__books">
         <ul class="books-list">
           <li class="books-list__item">
-            <a href="./book.php">
+            <a>
               <img class="books-list__item_img" src="./images/book1.jpg">
               <div class="books-list__item_info">
-                <a class="book-name">Путешествие в Элевсин</a>
-                <a class="book-author">Виктор Палевин</a>
+                <a class="book-name" href="./book.php">Путешествие в Элевсин</a>
+                <a class="book-author" href="./author.php">Виктор Палевин</a>
                 <div class="book-rating">
                   <svg width="16" height="16" fill="#ffc72c"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.486 13.376a1 1 0 00-.973 0l-2.697 1.502a1 1 0 01-1.474-1.033l.543-3.35a1 1 0 00-.27-.855L1.277 7.225a1 1 0 01.566-1.684l3.136-.483a1 1 0 00.754-.566l1.361-2.921a1 1 0 011.813 0l1.362 2.921a1 1 0 00.754.566l3.136.483a1 1 0 01.566 1.684l-2.34 2.415a1 1 0 00-.269.856l.542 3.349a1 1 0 01-1.473 1.033l-2.698-1.502z"></path></svg>
                   <span class="book-rating__dig">3,8</span>

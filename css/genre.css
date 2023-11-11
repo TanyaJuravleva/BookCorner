@@ -1,0 +1,24 @@
+.page-content{
+    padding: 0 10px;
+}
+
+.categories {
+    margin-top: 20px;
+}
+
+.categories__name {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.categories-genres {
+    list-style: none;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.categories__genre {
+
+}

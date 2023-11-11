@@ -1,0 +1,33 @@
+.profile {
+    padding: 0 20px;
+}
+
+.profile-block {
+    margin-top: 20px;
+}
+
+.profile-headline {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.profile-info__name {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.profile-info__phone {
+    margin-bottom: 2px;
+}
+
+.profile-info__email {
+
+}

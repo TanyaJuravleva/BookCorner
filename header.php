@@ -1,3 +1,9 @@
+<?php
+    include 'form_login.php'
+?>
+<?php
+    include 'form_registration.php'
+?>
 <header class="top-header">
         <div class="top-header__top">
           <div class="top-header__container">
@@ -14,7 +20,7 @@
           <div class="top-header__container">
             <ul class="menu-general">
               <li class="menu-general__item">
-                <a class="menu-general__link">Жанры</a>
+                <a class="menu-general__link" href="./genre.php">Жанры</a>
               </li>
               <li class="menu-general__item">
                 <a class="menu-general__link">Авторы</a>
