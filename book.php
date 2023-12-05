@@ -29,6 +29,13 @@
             <div class="book__ifo_main">
                 <h2 class="book-main__name">Путешествие в Элевсин</h2>
                 <h3 class="book-main__author">Виктор Палевин</h3>
+                <ul class="book-main__info">
+                  <li>Серия: </li>
+                  <li>Категории: </li>
+                  <li>Жанры: </li>
+                  <li>Год издания: </li>
+                  <li>Возрастное ограничение: </li>
+                </ul>
             </div>
         </div>
         <div class="book__info_annotation">

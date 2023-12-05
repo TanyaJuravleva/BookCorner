@@ -22,14 +22,14 @@
     ?>
     <main class="page-content">
       <article class="categories">
-        <h1 class="categories__name">Художественная литература</h2>
+        <h1 class="categories__name"><a class="categories__name-link" href="./hud_genre.php">Художественная литература</a></h2>
         <ul class="categories-genres">
-            <li class="categories__genre">Современна проза</li>
-            <li class="categories__genre">Классическая проза</li>
-            <li class="categories__genre">Любовные романы</li>
-            <li class="categories__genre">Исторические романы</li>
-            <li class="categories__genre">Детектив</li>
-            <li class="categories__genre">Фантастика</li>
+            <li class="categories__genre"><a>Современна проза</a></li>
+            <li class="categories__genre"><a>Классическая проза</a></li>
+            <li class="categories__genre"><a>Любовные романы</a></li>
+            <li class="categories__genre"><a>Исторические романы</a></li>
+            <li class="categories__genre"><a>Детектив</a></li>
+            <li class="categories__genre"><a>Фантастика</a></li>
         </ul>
       </article>
     </main>

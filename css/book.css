@@ -34,6 +34,15 @@
     font-weight: 600;
 }
 
+.book-main__info {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    list-style: none;
+    padding-left: 10px;
+    color: #7d8290;
+}
+
 .book__feedbacks {
 
 }

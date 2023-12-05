@@ -19,6 +19,9 @@
         <div class="top-header__bottom">
           <div class="top-header__container">
             <ul class="menu-general">
+            <li class="menu-general__item">
+                <a class="menu-general__link" href="./index.php">Главная</a>
+              </li>
               <li class="menu-general__item">
                 <a class="menu-general__link" href="./genre.php">Жанры</a>
               </li>

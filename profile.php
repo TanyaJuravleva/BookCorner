@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/form.css">
     <link rel="stylesheet" href="./css/micromodal.css">
     <link rel="stylesheet" href="./css/profile.css">
+    <link rel="stylesheet" href="./css/persanal_data.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -26,10 +27,19 @@
         <div class="profile-block">
             <h1 class="profile-headline">Личные данные</h1>
             <div class="profile-info">
-                <span class="profile-info__name">Журавлёва Татьяна</span>
+                <span class="profile-info__name">Login</span>
                 <span class="profile-info__phone">+7 (8976) 23-45-67</span>
                 <span class="profile-info__email">fkslf@mail.ru</span>
             </div>
+        </div>
+        <div class="personal-data">
+        <a class="menu-general__link" href="./form_edit_2.php">
+        <div class="personal-data__submit">
+            <div type="submit" disabled="disabled" class="button personal-data__button blue disabled"> 
+              Изменить данные 
+              </div>
+          </div>
+          </a>
         </div>
       </section>
     </main>

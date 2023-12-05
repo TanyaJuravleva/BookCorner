@@ -12,6 +12,12 @@
     font-weight: 600;
 }
 
+.categories__name-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
 .categories-genres {
     list-style: none;
     margin: 0;
@@ -20,5 +26,5 @@
 }
 
 .categories__genre {
-
+    cursor: pointer;
 }
