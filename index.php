@@ -18,7 +18,7 @@
   </head>
   <body class="body">
     <?php
-        include 'header.php'
+        include './app/include/header.php';
     ?>
     <main class="page-content">
       <article class="main-block">

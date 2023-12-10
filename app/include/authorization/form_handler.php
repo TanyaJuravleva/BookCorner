@@ -18,7 +18,7 @@ if (!empty($name) and !empty($password)) {
     $user = mysqli_fetch_assoc($res);
     
     if (!empty($user)) {
-        $_SESSION['user_id'] = $user['id_user'];
+        $_SESSION['id_user'] = $user['id_user'];
         header('Location: ../index.php');
     } else {
         //print("нет такого");
