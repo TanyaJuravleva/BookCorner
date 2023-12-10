@@ -115,12 +115,41 @@
     color: #fff;
 }
 
+.personal-data .personal-data__button__exit {
+    align-items: center;
+    display: flex;
+    font-size: 12px;
+    font-weight: 600;
+    height: 44px;
+    justify-content: center;
+    letter-spacing: .04em;
+    line-height: 16px;
+    padding: 0 24px;
+    text-align: center;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 4px;
+}
+
 .button.blue {
     background: rgb(34, 83, 120);
     cursor: pointer;
 }
 
+.button.white {
+    background: white;
+    cursor: pointer;
+}
+
 .personal-data .personal-data__button {
+    display: inline-flex;
+    font-size: 14px;
+    line-height: 18px;
+    min-width: 240px;
+    width: auto;
+}
+
+.personal-data .personal-data__button__exit {
     display: inline-flex;
     font-size: 14px;
     line-height: 18px;

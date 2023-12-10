@@ -1,5 +1,5 @@
 <?php
-// session_start();
+//session_start();
 // function connectToDB() {
 //     static $link;
 //     $data = include $_SERVER['DOCUMENT_ROOT'].'/config/config.php';

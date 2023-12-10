@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/form.css">
     <link rel="stylesheet" href="../../css/micromodal.css">
     <link rel="stylesheet" href="../../css/profile.css">
+    <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="../../css/persanal_data.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

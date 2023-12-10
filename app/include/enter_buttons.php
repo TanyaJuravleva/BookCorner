@@ -1,1 +1,0 @@
-<button onclick="document.location='../app/pages/profile.php'" type="submit" class="main-info__login">Профиль</button>
