@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="../../css/profile.css">
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="../../css/persanal_data.css">
+    <link rel="stylesheet" href="../../css/create_book.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta property="og:title" content="Заголовок страницы в OG">
     <meta property="og:description" content="Описание страницы в OG">
@@ -24,7 +26,7 @@
         include $_SERVER['DOCUMENT_ROOT'].'/app/include/header.php'
     ?>
     <main class="page-content">
-      <section class="container">
+      <section class="container-l">
         <div class="sidebar">
           <ul>
             <li><a>Книги</a></li>
@@ -35,21 +37,31 @@
         </div>
         <div class="info">
             <div>
-              <a href="./create_book.php" class="btn">Добавить книгу</a>
-              <a class="btn">Редактировать книгу</a>
+              <a href="./create_book.php" class="btn-l">Добавить книгу</a>
+              <a class="btn-l">Редактировать книгу</a>
             </div>
-            <div class="book-info title">
-              <p class="id">ID</p>
-              <p class="name">Название</p>
-              <p class="edit">Редактировать</p>
-              <p class="delete">Удалить</p>
-            </div>
-            <div class="book-info">
-              <p class="id">1</p>
-              <p class="name">Какое то название</p>
-              <p class="edit"><a>edit</a></p>
-              <p class="delete"><a>delete</a></p>
-            </div>
+            <form class="form" action="create_book_handler.php" method="POST">
+                <div class="col">
+                    <input class="form-control" type="text" name="password" placeholder="Название">
+                </div>
+                <div class="col">
+                    <label>Аннотация</label>
+                    <textarea class="form-control"></textarea>
+                </div>
+                <div class="input-group col">
+                    <input type="file" class="form-control" id="inputGroupFile02">
+                    <label class="input-group-text">Upload</label>
+                </div>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <div class="col">
+                    <button class="btn btn-primary">Сохранить книгу</buton>
+                </div>
+            </form>
         </div>
       </section>
       <section class="profile">

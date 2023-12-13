@@ -1,0 +1,71 @@
+.container-l {
+    display: flex;
+    margin-top: 15px;
+}
+
+.sidebar {
+    /* margin: 1rem 0; */
+    background: rgb(34, 83, 120);
+    min-height: 600px;
+    width: 200px;
+    padding: 0 9px;
+    font-size: 18px;
+}
+
+
+.sidebar ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color:white;
+}
+
+.sidebar ul a{
+    cursor: pointer;
+    padding: 18px;
+    display: block;
+    border-bottom: 1px solid white;
+}
+
+.book-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.id {
+    width: 37px;
+}
+
+.name{
+    width: 250px;
+}
+
+.edit {
+    width: 119px;
+}
+
+.delete {
+    width: 67px;
+}
+
+.title {
+    border-bottom: 1px solid;
+}
+
+p {
+    margin: 5px 0;
+}
+
+.btn-l {
+    display: inline-block; /* Строчно-блочный элемент */
+    background: #8C959D; /* Серый цвет фона */
+    color: #fff; /* Белый цвет текста */
+    padding: 1rem 1.5rem; /* Поля вокруг текста */
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 3px; /* Скругляем уголки */
+   }
