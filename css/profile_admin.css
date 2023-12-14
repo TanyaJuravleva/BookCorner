@@ -1,0 +1,63 @@
+.sidebar {
+    background: rgb(59, 115, 158);
+    /* margin: 1rem 0; */
+    min-height: 600px;
+    margin-right: 10spx;
+}
+
+.sidebar-list {
+    color: #fff;
+}
+
+.sidebar-list__href {
+    padding:18px;
+    display:block;
+    border-bottom: 1px solid #004044;
+}
+
+.sidebar-list__href:hover {
+    padding-left: 10px;
+    transition: all 0.3s;
+    color: #d3d3d3;
+}
+
+.profile-admin {
+    margin-top: 20px;
+}
+
+.profile-admin__btns {
+    margin-bottom: 20px;
+}
+
+.profile-admin__table {
+    padding-left: 40px;
+}
+
+.profile-admin__table-names {
+    text-align: left;
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.profile-admin__table-data {
+    text-align: left;
+    padding-top: 7px;
+}
+
+.profile-admin__table-title {
+    text-align: center;
+    margin: 1.2rem 0;
+}
+
+.profile-admin__table-row {
+    padding: 0;
+}
+
+.profile-admin__table-data_edit {
+    color: rgb(36, 158, 36);
+}
+
+.profile-admin__table-data_del {
+    color: rgb(218, 33, 33);
+}

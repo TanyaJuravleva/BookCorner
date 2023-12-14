@@ -1,0 +1,66 @@
+.cont-top {
+    padding-top: 20px;
+}
+
+.main-header {
+    background: rgb(34, 83, 120);
+}
+
+.main-header * {
+    color: #fff;
+}
+
+.main-header__title {
+    flex-grow: 8;
+    font-size: 32px;
+    padding-left: 26px;
+}
+
+.main-header__title, .main-header__user {
+    width:max-content;
+}
+
+.main-header__list_item {
+    float:left;
+    position: relative;
+}
+
+.main-header__list_item-href {
+    display: block;
+    font-size: 1.2rem;
+    padding: 13px;
+}
+
+.main-header__list_item-href:hover {
+    transition: 0.5s;
+    background: rgb(17, 51, 78);;
+}
+
+.main-header__user-drop-down-menu {
+    position: absolute;
+    top: 66px;
+    right: 3px;
+    width: 180px;
+    display: none;
+    z-index: 111s;
+}
+
+.main-header__user:hover .main-header__list_item {
+    display: block;
+}
+
+.main-header__user-name {
+   
+}
+
+.main-header__enter-btn {
+    font-size: 20px;
+}
+
+.main-header__reg-btn {
+    font-size: 18px;
+}
+
+.main-header__reg-btn:hover {
+    color: #aba5a5;
+}
