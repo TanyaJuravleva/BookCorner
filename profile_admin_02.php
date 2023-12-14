@@ -23,12 +23,15 @@
                 <ul class="sidebar-list">
                     <li><a class="sidebar-list__href" href="#">Книги</a></li>
                     <li><a class="sidebar-list__href" href="#">Пользователи</a></li>
+                    <li><a class="sidebar-list__href" href="#">Авторы</a></li>
                     <li><a class="sidebar-list__href" href="#">Категории</a></li>
+                    <li><a class="sidebar-list__href" href="#">Жанры</a></li>
+                    <li><a class="sidebar-list__href" href="#">Серии книг</a></li>
                 </ul>
             </div>
             <div class="profile-admin__table col-9">
                 <div class="profile-admin__btns">
-                    <a href="./add_book.php" class="btn btn-primary btn-lg">Добавить книгу</a>
+                    <a href="./create_book.php" class="btn btn-primary btn-lg">Добавить книгу</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать книгу</a>
                 </div>
                 <h2 class="profile-admin__table-title">Управление книгами</h2>
@@ -57,6 +60,147 @@
                     <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
                 </div>
             </div>
+
+            <div class="profile-admin__table col-9">
+                <div class="profile-admin__btns">
+                    <a href="./create_user.php" class="btn btn-primary btn-lg">Добавить пользователя</a>
+                    <a href="#" class="btn btn-secondary btn-lg">Редактировать пользователя</a>
+                </div>
+                <h2 class="profile-admin__table-title">Управление пользователями</h2>
+                <div>
+                    <div class="profile-admin__table-names row">
+                        <div class="profile-admin__table-row col-1">ID</div>
+                        <div class="profile-admin__table-row col-2">Login</div>
+                        <div class="profile-admin__table-row col-3">Email</div>
+                        <div class="profile-admin__table-row col-1">Edit</div>
+                        <div class="profile-admin__table-row col-1">Delete</div>
+                    </div>
+                </div>
+                <!-- Прогонять бд по циклу -->
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-2">Какое то азвание</div>
+                    <div class="profile-admin__table-row col-3">Какой то автор</div>
+                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
+                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
+                </div>
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-2">Какое то азвание</div>
+                    <div class="profile-admin__table-row col-3">Какой то автор</div>
+                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
+                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
+                </div>
+            </div>
+
+            <div class="profile-admin__table col-9">
+                <div class="profile-admin__btns">
+                    <a href="./create_author.php" class="btn btn-primary btn-lg">Добавить автора</a>
+                    <a href="#" class="btn btn-secondary btn-lg">Редактировать автора</a>
+                </div>
+                <h2 class="profile-admin__table-title">Управление автором</h2>
+                <div>
+                    <div class="profile-admin__table-names row">
+                        <div class="profile-admin__table-row col-1">ID</div>
+                        <div class="profile-admin__table-row col-5">First Name</div>
+                        <div class="profile-admin__table-row col-2">Last Name</div>
+                        <div class="profile-admin__table-row col-1">Patronymic</div>
+                        <div class="profile-admin__table-row col-1">Edit</div>
+                        <div class="profile-admin__table-row col-1">Delete</div>
+                    </div>
+                </div>
+                <!-- Прогонять бд по циклу -->
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-2">First Name</div>
+                    <div class="profile-admin__table-row col-2">Last Name</div>
+                    <div class="profile-admin__table-row col-2">Patro</div>
+                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
+                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
+                </div>
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-2">Какое то азвание</div>
+                    <div class="profile-admin__table-row col-2">Какой то автор</div>
+                    <div class="profile-admin__table-row col-2">Какой то автор</div>
+                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
+                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
+                </div>
+            </div>
+
+            <div class="profile-admin__table col-9">
+                <div class="profile-admin__btns">
+                    <a href="./create_category.php" class="btn btn-primary btn-lg">Добавить категорию</a>
+                    <a href="#" class="btn btn-secondary btn-lg">Редактировать категорию</a>
+                </div>
+                <h2 class="profile-admin__table-title">Управление категориями</h2>
+                <div>
+                    <div class="profile-admin__table-names row">
+                        <div class="profile-admin__table-row col-1">ID</div>
+                        <div class="profile-admin__table-row col-5">Name</div>
+                    </div>
+                </div>
+                <!-- Прогонять бд по циклу -->
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-5">First Name</div>
+                </div>
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-5">Какое то азвание</div>
+                </div>
+            </div>
+
+            <div class="profile-admin__table col-9">
+                <div class="profile-admin__btns">
+                    <a href="./create_genre.php" class="btn btn-primary btn-lg">Добавить жанр</a>
+                    <a href="#" class="btn btn-secondary btn-lg">Редактировать жанр</a>
+                </div>
+                <h2 class="profile-admin__table-title">Управление жанрами</h2>
+                <div>
+                    <div class="profile-admin__table-names row">
+                        <div class="profile-admin__table-row col-1">ID</div>
+                        <div class="profile-admin__table-row col-5">Name</div>
+                        <div class="profile-admin__table-row col-5">Category Name</div>
+                    </div>
+                </div>
+                <!-- Прогонять бд по циклу -->
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-5">First Name</div>
+                    <div class="profile-admin__table-row col-5">First Name</div>
+                </div>
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-5">Какое то азвание</div>
+                    <div class="profile-admin__table-row col-5">First Name</div>
+                </div>
+            </div>
+
+            <div class="profile-admin__table col-9">
+                <div class="profile-admin__btns">
+                    <a href="./create_seria.php" class="btn btn-primary btn-lg">Добавить серию</a>
+                    <a href="#" class="btn btn-secondary btn-lg">Редактировать серию</a>
+                </div>
+                <h2 class="profile-admin__table-title">Управление сериями</h2>
+                <div>
+                    <div class="profile-admin__table-names row">
+                        <div class="profile-admin__table-row col-1">ID</div>
+                        <div class="profile-admin__table-row col-5">Name</div>
+                    </div>
+                </div>
+                <!-- Прогонять бд по циклу -->
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-5">First Name</div>
+                </div>
+                <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1">1</div>
+                    <div class="profile-admin__table-row col-5">Какое то азвание</div>
+                </div>
+            </div>
+
+
         </div>
     </div>
   </body>

@@ -28,7 +28,7 @@
 .main-header__list_item-href {
     display: block;
     font-size: 1.2rem;
-    padding: 13px;
+    padding: 7px 13px;
 }
 
 .main-header__list_item-href:hover {
@@ -63,4 +63,23 @@
 
 .main-header__reg-btn:hover {
     color: #aba5a5;
+}
+
+.main-header__navbar {
+    padding: 0;
+}
+
+@media (max-width: 992px)
+{
+    .main-header__title {
+        padding-left: 66px;
+    }
+
+    .btn-list {
+        position: absolute;
+        top: -48px;
+    }
+    .cont-top {
+        padding: 10px 0;
+    }
 }
