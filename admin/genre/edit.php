@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
-  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/category.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/genre.php';
   require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
@@ -19,29 +19,35 @@
   </head>
   <body>
     <?php 
-        include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
+    include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
     ?>
     <div class="container">
         <div class="row profile-admin">
             <?php include $_SERVER['DOCUMENT_ROOT']."/admin/slidebar_admin.php" ?> 
             <div class="profile-admin__table col-9">
                 <div class="profile-admin__btns">
-                    <a href="<?php echo BASE_URL.'/admin/category/create.php'?>" class="btn btn-primary btn-lg">Добавить категорию</a>
-                    <a href="#" class="btn btn-secondary btn-lg">Редактировать категорию</a>
+                    <a href="<?php echo BASE_URL.'/admin/genre/create.php'?>" class="btn btn-primary btn-lg">Добавить жанр</a>
+                    <a href="#" class="btn btn-secondary btn-lg">Редактировать жанр</a>
                 </div>
-                <h2 class="profile-admin__table-title">Редактирование категории</h2>
+                <h2 class="profile-admin__table-title">Редактирование жанра</h2>
                 <div class="info">
-                    <form class="form" action="./edit.php" method="post">
-                        <input value="<?=$_SESSION['id_category']?>" type="hidden" name="id">
+                    <form class="form" action="./edit.php" method="POST">
+                        <input value="<?=$_SESSION['id_genre']?>" type="hidden" name="id">
                         <div class="col">
                             <label>Название</label>
-                            <input value="<?=$name?>" class="form-control" type="text" name="category-name">
+                            <input value="<?=$name?>" class="form-control" type="text" name="genre-name">
                         </div>
+                        <label>Категория</label>
+                        <select name="genre-category" class="form-select" aria-label="Default select example">
+                            <?php foreach($categories as $key => $category):?>
+                                <option value="<?=$category['id_category']?>" <?php if ($category['id_category'] === $id_category) {echo 'selected';}?>><?=$category['name']?></option>
+                            <?php endforeach; ?>
+                        </select>
                         <div class="mb-12 col-12 col-md-12 err">
                             <p><?=$errMsg?></p>
                         </div>
                         <div class="col">
-                            <button name="category-edit" class="btn btn-primary">Обновить категорию</buton>
+                            <button name="genre-edit" class="btn btn-primary">Обновить жанр</buton>
                         </div>
                     </form>
                 </div>

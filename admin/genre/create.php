@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/genre.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,21 +29,25 @@
                     <a href="<?php echo BASE_URL.'/admin/genre/create.php'?>" class="btn btn-primary btn-lg">Добавить жанр</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать жанр</a>
                 </div>
+                <h2 class="profile-admin__table-title">Создание жанра</h2>
                 <div class="info">
-                    <form class="form" action="create_genre_handler.php" method="POST">
+                    <form class="form" action="./create.php" method="POST">
                         <div class="col">
                             <label>Название</label>
-                            <input class="form-control" type="text" name="first">
+                            <input value="<?=$name?>" class="form-control" type="text" name="genre-name">
                         </div>
                         <label>Категория</label>
-                        <select class="form-select" size="3" aria-label="size 3 select example">
-                            <!-- <option selected>Open this select menu</option> -->
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select name="genre-category" class="form-select" aria-label="Default select example">
+                            <option selected value="">Нет категории</option>
+                            <?php foreach($categories as $key => $category):?>
+                                <option value="<?=$category['id_category']?>"><?=$category['name']?></option>
+                            <?php endforeach; ?>
                         </select>
+                        <div class="mb-12 col-12 col-md-12 err">
+                            <p><?=$errMsg?></p>
+                        </div>
                         <div class="col">
-                            <button class="btn btn-primary">Сохранить жанр</buton>
+                            <button name="genre-create" class="btn btn-primary">Сохранить жанр</buton>
                         </div>
                     </form>
                 </div>

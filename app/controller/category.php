@@ -2,7 +2,6 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 $errMsg = '';
-$id = '';
 
 $categories = selectAll('category');
 
@@ -31,15 +30,13 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['category-create']))
 } else {
     $name = '';
 }
-
-
-
 //Код для редактирования категории
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id']))  {
     $id = $_GET['id'];
     $category = selectOne('category', ['id_category' => $id]);
     $id = $category['id_category'];
     $name = $category['name'];
+    $_SESSION['id_category'] = $id;
 }
 
 if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['category-edit']))  
@@ -56,6 +53,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['category-edit']))
         ];
         $id = $_POST['id'];
         update('category', $id, $category);
+        unset($_SESSION['id_category']);
         header('location:' . BASE_URL . "/admin/category/index.php");
     }
 }
@@ -64,6 +62,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['category-edit']))
 //Код для удаления категории
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
+    deleteCond('genre', ['id_category' => $id]);
     delete('category', $id);
     header('location:' . BASE_URL . "/admin/category/index.php");
 }

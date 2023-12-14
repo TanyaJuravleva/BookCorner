@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/genre.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -31,21 +33,22 @@
                 <div>
                     <div class="profile-admin__table-names row">
                         <div class="profile-admin__table-row col-1">ID</div>
-                        <div class="profile-admin__table-row col-5">Name</div>
-                        <div class="profile-admin__table-row col-5">Category Name</div>
+                        <div class="profile-admin__table-row col-3">Name</div>
+                        <div class="profile-admin__table-row col-3">Category Name</div>
+                        <div class="profile-admin__table-row col-1">Edit</div>
+                        <div class="profile-admin__table-row col-1">Delete</div>
                     </div>
                 </div>
                 <!-- Прогонять бд по циклу -->
+                <?php foreach($genres as $key => $genre):?>
                 <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1">1</div>
-                    <div class="profile-admin__table-row col-5">First Name</div>
-                    <div class="profile-admin__table-row col-5">First Name</div>
+                    <div class="profile-admin__table-row col-1"><?=$genre['id_genre']?></div>
+                    <div class="profile-admin__table-row col-3"><?=$genre['name']?></div>
+                    <div class="profile-admin__table-row col-3"><?=selectOne('category', ['id_category' => $genre['id_category']])['name']?></div>
+                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="edit.php?id=<?=$genre['id_genre']?>">Edit</a></div>
+                      <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="edit.php?del_id=<?=$genre['id_genre']?>">Delete</a></div>
                 </div>
-                <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1">1</div>
-                    <div class="profile-admin__table-row col-5">Какое то азвание</div>
-                    <div class="profile-admin__table-row col-5">First Name</div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

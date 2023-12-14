@@ -61,3 +61,7 @@
 .profile-admin__table-data_del {
     color: rgb(218, 33, 33);
 }
+
+.err {
+    color: red;
+}

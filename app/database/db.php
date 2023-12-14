@@ -6,6 +6,7 @@ function tt($value) {
     echo '<pre>';
     print_r($value);
     echo '</pre>';
+    exit();
 }
 
 //проверка выполнения запроса к БД
@@ -116,6 +117,29 @@ function delete($table, $id)
 {
     global $link;
     $sql = "DELETE FROM $table WHERE id_$table = $id";
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+}
+
+function deleteCond($table, $params = [])
+{
+    global $link;
+    $sql = "DELETE FROM $table";
+    if (!empty($params)){
+        $i = 0;
+        foreach($params as $key => $value){
+            if (!is_numeric($value)){
+                $value = "'" . $value . "'";
+            }
+            if ($i === 0){
+                $sql = $sql . " WHERE $key = $value";
+            }
+            else{
+                $sql = $sql . " AND $key = $value";
+            }
+            $i++;
+        }
+    }
     $query = mysqli_query($link, $sql);
     dbCheckError($query);
 }

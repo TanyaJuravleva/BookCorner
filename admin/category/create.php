@@ -31,13 +31,13 @@
                 </div>
                 <h2 class="profile-admin__table-title">Создание категории</h2>
                 <div class="info">
-                    <div class="mb-12 col-12 col-md-12">
-                        <p><?=$errMsg?></p>
-                    </div>
                     <form class="form" action="./create.php" method="post">
                         <div class="col">
                             <label>Название</label>
                             <input value="<?=$name?>" class="form-control" type="text" name="category-name">
+                        </div>
+                        <div class="mb-12 col-12 col-md-12 err">
+                            <p><?=$errMsg?></p>
                         </div>
                         <div class="col">
                             <button name="category-create" class="btn btn-primary">Сохранить категорию</buton>
