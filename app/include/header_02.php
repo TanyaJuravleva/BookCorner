@@ -1,10 +1,13 @@
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+?>
 <header class="container-fluid main-header">
     <div class="container cont-top">
         <div class="row">
             <h1 class="main-header__title row"><a href="#">BOOKCORNER</a></h1>
             <div class="main-header__user">
-                <button type="button" class="btn btn-outline-secondary main-header__enter-btn">Войти</button>
-                <button type="button" class="btn btn-link main-header__reg-btn">Регистрация</button>
+                <a href="<?php echo BASE_URL .'/app/authorization/login_form.php'?>" type="button" class="btn btn-outline-secondary main-header__enter-btn">Войти</a>
+                <a href="<?php echo BASE_URL .'/app/authorization/registration_form.php'?>" type="button" class="btn btn-link main-header__reg-btn">Регистрация</a>
             </div>
         </div>
         <div class="row">
