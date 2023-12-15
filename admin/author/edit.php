@@ -29,28 +29,30 @@
                     <a href="<?php echo BASE_URL.'/admin/author/create.php'?>" class="btn btn-primary btn-lg">Добавить автора</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать автора</a>
                 </div>
-                <h2 class="profile-admin__table-title">Управление автором</h2>
-                <div>
-                    <div class="profile-admin__table-names row">
-                        <div class="profile-admin__table-row col-1">ID</div>
-                        <div class="profile-admin__table-row col-3">First Name</div>
-                        <div class="profile-admin__table-row col-3">Last Name</div>
-                        <div class="profile-admin__table-row col-3">Patronymic</div>
-                        <div class="profile-admin__table-row col-1">Edit</div>
-                        <div class="profile-admin__table-row col-1">Delete</div>
-                    </div>
+                <h2 class="profile-admin__table-title">Редактирование автора</h2>
+                <div class="info">
+                    <form class="form" action="./edit.php" method="POST">
+                        <input value="<?=$_SESSION['id_author']?>" type="hidden" name="id">
+                        <div class="col">
+                            <label>Имя</label>
+                            <input value="<?=$first_name?>" class="form-control" type="text" name="first">
+                        </div>
+                        <div class="col">
+                            <label>Фамилия</label>
+                            <input value="<?=$last_name?>" class="form-control" type="text" name="last">
+                        </div>
+                        <div class="col">
+                            <label>Отчество</label>
+                            <input value="<?=$patron?>" class="form-control" type="text" name="patron">
+                        </div>
+                        <div class="mb-12 col-12 col-md-12 err">
+                            <p><?=$errMsg?></p>
+                        </div>
+                        <div class="col">
+                            <button name="author-edit" class="btn btn-primary">Обновить автора</buton>
+                        </div>
+                    </form>
                 </div>
-                <!-- Прогонять бд по циклу -->
-                <?php foreach($authors as $key => $author):?>
-                  <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1"><?=$author['id_author']?></div>
-                    <div class="profile-admin__table-row col-3"><?=$author['first_name']?></div>
-                    <div class="profile-admin__table-row col-3"><?=$author['last_name']?></div>
-                    <div class="profile-admin__table-row col-3"><?=$author['patronymic']?></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="edit.php?id=<?=$author['id_author']?>">Edit</a></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="edit.php?del_id=<?=$author['id_author']?>">Delete</a></div>
-                  </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>

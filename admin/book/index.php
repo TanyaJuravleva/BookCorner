@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/book.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -31,30 +33,42 @@
                 <div>
                     <div class="profile-admin__table-names row">
                         <div class="profile-admin__table-row col-1">ID</div>
-                        <div class="profile-admin__table-row col-5">Название</div>
-                        <div class="profile-admin__table-row col-2">Автор</div>
+                        <div class="profile-admin__table-row col-4">Название</div>
+                        <div class="profile-admin__table-row col-2">Авторы</div>
+                        <div class="profile-admin__table-row col-3">Жанры</div>
                         <div class="profile-admin__table-row col-1">Edit</div>
                         <div class="profile-admin__table-row col-1">Delete</div>
                     </div>
                 </div>
                 <!-- Прогонять бд по циклу -->
-                <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1">1</div>
-                    <div class="profile-admin__table-row col-5">Какое то азвание</div>
-                    <div class="profile-admin__table-row col-2">Какой то автор</div>
-                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
-                </div>
-                <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1">1</div>
-                    <div class="profile-admin__table-row col-5">Какое то азвание</div>
-                    <div class="profile-admin__table-row col-2">Какой то автор</div>
-                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
-                </div>
+                <?php foreach($books as $key => $book):?>
+                  <div class="profile-admin__table-data row">
+                      <div class="profile-admin__table-row col-1"><?=$book['id_book']?></div>
+                      <div class="profile-admin__table-row col-4"><?=$book['name']?>s</div>
+                      <div class="profile-admin__table-row col-2">
+                        <?php
+                        $par = selectAll('author_has_books', ['id_book' => $book['id_book']]);
+                        foreach ($par as $key => $val) {
+                            $author = selectOne('author', ['id_author' => $val['id_author']]);
+                            echo $author['first_name'] . " " . $author['last_name'] . "<br>";
+                        }
+                        ?>
+                      </div>
+                      <div class="profile-admin__table-row col-3">
+                        <?php
+                        $par = selectAll('book_has_genres', ['id_book' => $book['id_book']]);
+                        foreach ($par as $key => $val) {
+                            $genre = selectOne('genre', ['id_genre' => $val['id_genre']]);
+                            echo $genre['name'] ."<br>";
+                        }
+                        ?>
+                      </div>
+                      <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="edit.php?id=<?=$book['id_book']?>">Edit</a></div>
+                      <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="edit.php?del_id=<?=$book['id_book']?>">Delete</a></div>
+                  </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
-  </body>
   </body>
 </html>

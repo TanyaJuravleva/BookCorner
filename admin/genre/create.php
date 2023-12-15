@@ -38,9 +38,9 @@
                         </div>
                         <label>Категория</label>
                         <select name="genre-category" class="form-select" aria-label="Default select example">
-                            <option selected value="">Нет категории</option>
+                            <option <?php if ($id_category) {echo 'selected';} ?> value="">Нет категории</option>
                             <?php foreach($categories as $key => $category):?>
-                                <option value="<?=$category['id_category']?>"><?=$category['name']?></option>
+                                <option value="<?=$category['id_category']?>" <?php if ($category['id_category'] === $id_category) {echo 'selected';}?>><?=$category['name']?></option>
                             <?php endforeach; ?>
                         </select>
                         <div class="mb-12 col-12 col-md-12 err">

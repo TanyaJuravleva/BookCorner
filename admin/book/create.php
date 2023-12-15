@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/book.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,50 +29,73 @@
                     <a href="<?php echo BASE_URL.'/admin/book/create.php'?>" class="btn btn-primary btn-lg">Добавить книгу</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать книгу</a>
                 </div>
+                <h2 class="profile-admin__table-title">Создание книги</h2>
                 <div class="info">
-                    <form class="form" action="create_book_handler.php" method="POST">
+                    <div class="mb-12 col-12 col-md-12 err">
+                            <p><?=$errMsg?></p>
+                        </div>
+                    <form class="form" action="./create.php" method="POST">
                         <div class="col">
-                            <input class="form-control" type="text" name="name" placeholder="Название">
+                            <label>Название</label>
+                            <input value="<?=$name?>" class="form-control" type="text" name="name">
                         </div>
                         <label>Серия</label>
-                        <select class="form-select" aria-label="Series">
-                            <option selected>Нет серии</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select name="book-seria" class="form-select" aria-label="">
+                            <option <?php if (!$id_seria) {echo 'selected';} ?> value="">Нет серии</option>
+                            <?php foreach($series as $key => $seria):?>
+                                <option value="<?=$seria['id_series']?>" <?php if ($seria['id_series'] === $id_seria) {echo 'selected';}?>><?=$seria['name']?></option>
+                            <?php endforeach;?>
                         </select>
                         <div class="col">
                             <label>Возрастное ограничение</label>
-                            <input class="form-control" type="text" name="age">
+                            <input value="<?=$age_restrictions?>" class="form-control" type="text" name="age">
                         </div>
                         <div class="col">
                             <label>Год публикации</label>
-                            <input class="form-control" type="text" name="publish">
+                            <input value="<?=$publish_year?>" class="form-control" type="number" name="publish" min="1900" max="2023" step="1"/>
                         </div>
                         <div class="col">
                             <label>Аннотация</label>
-                            <textarea class="form-control"></textarea>
+                            <textarea name="text" class="form-control"><?=$annotatinon?></textarea>
                         </div>
                         <div class="col">
                             <label>Загрузить фото книги</label>
-                            <input type="file" class="form-control" id="inputGroupFile02">
+                            <input value="<?=$$photo_path?>" name="photo" type="file" class="form-control" id="inputGroupFile02">
                         </div>
                         <label>Жанры</label>
-                        <select class="form-select" size="3" aria-label="size 3 select example">
-                            <!-- <option selected>Open this select menu</option> -->
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <input value="<?=$str_book_genres?>" id="genres-js" name="genres" type="hidden">
+                        <div>
+                            <?php foreach($genres as $key => $genre):?>
+                                <div class="form-check form-check-inline">
+                                    <input class="genre-check-js orm-check-input" type="checkbox" id="<?=$genre['id_genre']?>" value="<?=$genre['id_genre']?>"
+                                    <?php if ($book_genres) {if (in_array($genre['id_genre'], $book_genres)) {echo 'checked';}}?>> 
+                                    <label class="form-check-label" for="<?=$genre['id_genre']?>"><?=$genre['name']?></label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <!-- <select name="book-genre" class="form-select" aria-label="" multiple>
+                            <?php foreach($genres as $key => $genre):?>
+                                <option value="<?=$genre['id_genre']?>"?>><?=$genre['name']?></option>
+                            <?php endforeach; ?>
+                        </select> -->
                         <label>Авторы</label>
-                        <select class="form-select" size="3" aria-label="size 3 select example">
-                            <!-- <option selected>Open this select menu</option> -->
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <input value="<?=$str_book_authors?>" id="authors-js" name="authors" type="hidden">
+                        <div>
+                            <?php foreach($authors as $key => $author):?>
+                                <div class="form-check form-check-inline">
+                                    <input class="author-check-js form-check-input" type="checkbox" id="<?=$author['id_author']?>" value="<?=$author['id_author']?>" 
+                                    <?php if ($book_genres) {if (in_array($author['id_author'], $book_authors)) {echo 'checked';}}?>> 
+                                    <label class="form-check-label" for="<?=$author['id_author']?>"><?=$author['first_name']." ".$author['last_name']." ".$author['patronymic']?></label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <!-- <select name="book-authors" class="form-select" aria-label="" multiple>
+                            <?php foreach($authors as $key => $author):?>
+                                <option value="<?=$author['id_author']?>"><?=$author['first_name']." ".$author['last_name']." ".$author['patronymic']?></option>
+                            <?php endforeach; ?>
+                        </select> -->
                         <div class="col">
-                            <button class="btn btn-primary">Сохранить книгу</buton>
+                            <button name="book-create" id="book-create-js" class="btn btn-primary">Создать книгу</buton>
                         </div>
                     </form>
                 </div>
@@ -78,5 +103,5 @@
         </div>
     </div>
   </body>
-  </body>
+  <script src="<?php echo BASE_URL.'/js/book.js'?>"></script>
 </html>

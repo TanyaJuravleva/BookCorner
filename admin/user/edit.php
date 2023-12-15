@@ -29,9 +29,10 @@
                     <a href="<?php echo BASE_URL.'/admin/user/create.php'?>" class="btn btn-primary btn-lg">Добавить пользователя</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать пользователя</a>
                 </div>
-                <h2 class="profile-admin__table-title">Создание пользователя</h2>
+                <h2 class="profile-admin__table-title">Редактирование пользователя</h2>
                 <div class="info">
-                    <form class="form" action="./create.php" method="POST">
+                    <form class="form" action="./edit.php" method="POST">
+                        <input value="<?=$_SESSION['id_user']?>" type="hidden" name="id">
                         <div class="col">
                             <label>Имя</label>
                             <input value="<?=$name?>" class="form-control" type="text" name="name">
@@ -54,7 +55,6 @@
                         </div>
                         <label>Роль</label>
                         <select name="user-role" class="form-select" aria-label="">
-                            <option <?php if ($id_role) {echo 'selected';} ?> value="">Нет роли</option>
                             <?php foreach($roles as $key => $role):?>
                                 <option value="<?=$role['id_role']?>" <?php if ($role['id_role'] === $id_role) {echo 'selected';}?>><?=$role['name']?></option>
                             <?php endforeach;?>
@@ -63,7 +63,7 @@
                             <p><?=$errMsg?></p>
                         </div>
                         <div class="col">
-                            <button name="user-create" class="btn btn-primary">Создать пользователя</buton>
+                            <button name="user-edit" class="btn btn-primary">Обновить пользователя</buton>
                         </div>
                     </form>
                 </div>

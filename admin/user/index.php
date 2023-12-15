@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/user.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -31,27 +33,24 @@
                 <div>
                     <div class="profile-admin__table-names row">
                         <div class="profile-admin__table-row col-1">ID</div>
-                        <div class="profile-admin__table-row col-2">Login</div>
-                        <div class="profile-admin__table-row col-3">Email</div>
+                        <div class="profile-admin__table-row col-3">Login</div>
+                        <div class="profile-admin__table-row col-5">Email</div>
+                        <div class="profile-admin__table-row col-1">Role</div>
                         <div class="profile-admin__table-row col-1">Edit</div>
                         <div class="profile-admin__table-row col-1">Delete</div>
                     </div>
                 </div>
                 <!-- Прогонять бд по циклу -->
-                <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1">1</div>
-                    <div class="profile-admin__table-row col-2">Какое то азвание</div>
-                    <div class="profile-admin__table-row col-3">Какой то автор</div>
-                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
-                </div>
-                <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1">1</div>
-                    <div class="profile-admin__table-row col-2">Какое то азвание</div>
-                    <div class="profile-admin__table-row col-3">Какой то автор</div>
-                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="#">Edit</a></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="#">Delete</a></div>
-                </div>
+                <?php foreach($users as $key => $user):?>
+                  <div class="profile-admin__table-data row">
+                    <div class="profile-admin__table-row col-1"><?=$user['id_user']?></div>
+                    <div class="profile-admin__table-row col-3"><?=$user['name']?></div>
+                    <div class="profile-admin__table-row col-5"><?=$user['email']?></div>
+                    <div class="profile-admin__table-row col-1"><?=selectOne('role', ['id_role' => $user['id_role']])['name']?></div>
+                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="edit.php?id=<?=$user['id_user']?>">Edit</a></div>
+                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="edit.php?del_id=<?=$user['id_user']?>">Delete</a></div>
+                  </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

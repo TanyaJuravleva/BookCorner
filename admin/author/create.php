@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/author.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,22 +29,26 @@
                     <a href="<?php echo BASE_URL.'/admin/author/create.php'?>" class="btn btn-primary btn-lg">Добавить автора</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать автора</a>
                 </div>
+                <h2 class="profile-admin__table-title">Создание автора</h2>
                 <div class="info">
-                    <form class="form" action="create_author_handler.php" method="POST">
+                    <form class="form" action="./create.php" method="POST">
                         <div class="col">
                             <label>Имя</label>
-                            <input class="form-control" type="text" name="first">
+                            <input value="<?=$first_name?>" class="form-control" type="text" name="first">
                         </div>
                         <div class="col">
                             <label>Фамилия</label>
-                            <input class="form-control" type="text" name="last">
+                            <input value="<?=$last_name?>" class="form-control" type="text" name="last">
                         </div>
                         <div class="col">
                             <label>Отчество</label>
-                            <input class="form-control" type="text" name="patron">
+                            <input value="<?=$patron?>" class="form-control" type="text" name="patron">
+                        </div>
+                        <div class="mb-12 col-12 col-md-12 err">
+                            <p><?=$errMsg?></p>
                         </div>
                         <div class="col">
-                            <button class="btn btn-primary">Сохранить автора</buton>
+                            <button name="author-create" class="btn btn-primary">Сохранить автора</buton>
                         </div>
                     </form>
                 </div>
