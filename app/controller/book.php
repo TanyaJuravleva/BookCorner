@@ -85,16 +85,41 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-create']))
     $str_book_authors = '';
     $str_book_genres = '';
 }
-// //Код для редактирования книги
-// if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id']))  {
-//     $id = $_GET['id'];
-//     $category = selectOne('category', ['id_category' => $id]);
-//     $id = $category['id_category'];
-//     $name = $category['name'];
-//     $_SESSION['id_category'] = $id;
-// }
+//Код для редактирования книги
+if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id']))  {
+    $id = $_GET['id'];
+    $book = selectOne('book', ['id_book' => $id]);
+    $id = $book['id_book'];
+    $name = $book['name'];
+    $id_seria = $book['id_series'];
+    $date_of_receipt = $book['date_of_receipt'];
+    $annotatinon = $book['annotatinon'];
+    $age_restrictions = $book['age_restrictions'];
+    $publish_year = $book['publish_year'];
+    $photo_path = $book['photo_path'];
 
-// if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['category-edit']))  
+    $arr_sql_genres = selectAll('book_has_genres', ['id_book'=>$id]);
+    $book_genres = array();
+    foreach($arr_sql_genres as $key => $val)
+    {
+        $id_genre = $val['id_genre'];
+        array_push($book_genres, $id_genre);
+    }
+    $str_book_genres = implode(",", $book_genres);
+
+
+    $arr_sql_authors = selectAll('author_has_books', ['id_book'=>$id]);
+    $book_authors = array();
+    foreach($arr_sql_authors as $key => $val)
+    {
+        $id_author = $val['id_author'];
+        array_push($book_authors, $id_author);
+    }
+    $str_book_authors = implode(",", $book_authors);
+    $_SESSION['id_book'] = $id;
+}
+
+// if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-edit']))  
 // {
 //     $name = trim($_POST['category-name']);
 //     if ($name === '')
