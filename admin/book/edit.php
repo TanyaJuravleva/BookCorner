@@ -56,6 +56,10 @@
                             <input value="<?=$publish_year?>" class="form-control" type="number" name="publish" min="1900" max="2023" step="1"/>
                         </div>
                         <div class="col">
+                            <label>Дата поступления</label>
+                            <input value="<?=$date_of_receipt?>" class="form-control" type="date" name="date_of_receipt">
+                        </div>
+                        <div class="col">
                             <label>Аннотация</label>
                             <textarea name="text" class="form-control"><?=$annotatinon?></textarea>
                         </div>

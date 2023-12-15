@@ -29,24 +29,22 @@
                     <a href="<?php echo BASE_URL.'/admin/seria/create.php'?>" class="btn btn-primary btn-lg">Добавить серию</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать серию</a>
                 </div>
-                <h2 class="profile-admin__table-title">Управление сериями</h2>
-                <div>
-                    <div class="profile-admin__table-names row">
-                        <div class="profile-admin__table-row col-1">ID</div>
-                        <div class="profile-admin__table-row col-5">Name</div>
-                        <div class="profile-admin__table-row col-1">Edit</div>
-                        <div class="profile-admin__table-row col-1">Delete</div>
-                    </div>
+                <h2 class="profile-admin__table-title">Редактирование серии</h2>
+                <div class="info">
+                    <form class="form" action="./edit.php" method="POST">
+                        <input value="<?=$_SESSION['id_series']?>" type="hidden" name="id">
+                        <div class="col">
+                            <label>Название</label>
+                            <input value=<?=$name?> class="form-control" type="text" name="name">
+                        </div>
+                        <div class="mb-12 col-12 col-md-12 err">
+                            <p><?=$errMsg?></p>
+                        </div>
+                        <div class="col">
+                            <button name="seria-edit" class="btn btn-primary">Обновить серию</buton>
+                        </div>
+                    </form>
                 </div>
-                <!-- Прогонять бд по циклу -->
-                <?php foreach($series as $key => $seria):?>
-                  <div class="profile-admin__table-data row">
-                    <div class="profile-admin__table-row col-1"><?=$seria['id_series']?></div>
-                    <div class="profile-admin__table-row col-5"><?=$seria['name']?></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_edit col-1"><a href="edit.php?id=<?=$seria['id_series']?>">Edit</a></div>
-                    <div class="profile-admin__table-row profile-admin__table-data_del col-1"><a href="edit.php?del_id=<?=$seria['id_series']?>">Delete</a></div>
-                  </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>

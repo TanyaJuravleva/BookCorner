@@ -75,7 +75,16 @@ function insert($table, $params){
     $coll = '';
     $mas = '';
     foreach($params as $key => $value){
-        if ($i === 0) {
+        if (empty($value)) {
+            if ($i !== 0){
+                $coll = $coll . ", $key";
+                $mas = $mas . ", ". 'NULL';
+            }
+            else{
+                $coll = $coll . "$key";
+                $mas = $mas . 'NULL';
+            }
+        }elseif ($i === 0) {
             $coll = $coll . "$key";
             $mas = $mas . "'" . "$value" . "'";
         }else{
@@ -99,7 +108,15 @@ function update($table, $id, $params){
     $i = 0;
     $str = '';
     foreach($params as $key => $value){
-        if ($i === 0) {
+        if (empty($value)) {
+            if ($i !== 0){
+                $str = $str . ", " . $key . " = " . 'NULL' ;
+            }
+            else{
+                $str = $str . $key . " = " . 'NULL' ;
+            }
+        }
+        elseif ($i === 0) {
             $str = $str . $key . " = '" . $value . "'";
         }else{
             $str = $str . ", " . $key . " = '" . $value . "'";
@@ -108,7 +125,8 @@ function update($table, $id, $params){
     }
 
     $sql = "UPDATE $table SET $str WHERE id_$table = $id";
-
+    print($sql);
+    //exit();
     $query = mysqli_query($link, $sql);
     dbCheckError($query);
 }

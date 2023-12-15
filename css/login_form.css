@@ -15,3 +15,6 @@
 .form-reg__btn {
     width: 52%!important;
 }
+.err {
+    color: red;
+}

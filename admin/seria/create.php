@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/seria.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -27,14 +29,18 @@
                     <a href="<?php echo BASE_URL.'/admin/seria/create.php'?>" class="btn btn-primary btn-lg">Добавить серию</a>
                     <a href="#" class="btn btn-secondary btn-lg">Редактировать серию</a>
                 </div>
+                <h2 class="profile-admin__table-title">Создание серии</h2>
                 <div class="info">
-                    <form class="form" action="create_seria_handler.php" method="POST">
+                    <form class="form" action="./create.php" method="POST">
                         <div class="col">
                             <label>Название</label>
-                            <input class="form-control" type="text" name="first">
+                            <input value=<?=$name?> class="form-control" type="text" name="name">
+                        </div>
+                        <div class="mb-12 col-12 col-md-12 err">
+                            <p><?=$errMsg?></p>
                         </div>
                         <div class="col">
-                            <button class="btn btn-primary">Сохранить серию</buton>
+                            <button name="seria-create" class="btn btn-primary">Сохранить серию</buton>
                         </div>
                     </form>
                 </div>

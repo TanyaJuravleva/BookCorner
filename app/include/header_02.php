@@ -1,14 +1,24 @@
 <?php
+  require_once $_SERVER['DOCUMENT_ROOT']."/app/database/db.php";
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 ?>
 <header class="container-fluid main-header">
     <div class="container cont-top">
         <div class="row">
-            <h1 class="main-header__title row"><a href="#">BOOKCORNER</a></h1>
-            <div class="main-header__user">
-                <a href="<?php echo BASE_URL .'/app/authorization/login_form.php'?>" type="button" class="btn btn-outline-secondary main-header__enter-btn">Войти</a>
-                <a href="<?php echo BASE_URL .'/app/authorization/registration_form.php'?>" type="button" class="btn btn-link main-header__reg-btn">Регистрация</a>
-            </div>
+            <h1 class="main-header__title row"><a href="<?php echo BASE_URL .'/index_02.php'?>">BOOKCORNER</a></h1>
+            <?php if (isset($_SESSION['id'])):?>
+                <ul class="main-header__list main-header__user">
+                    <li class="main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL. '/app/pages/profile_02.php'?>"><?=$_SESSION['name']?></a></li>
+                    <?php if ($_SESSION['id_role'] == 1):?>
+                        <li class="main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL. '/admin/book/index.php'?>">Админ панель</a></li>
+                    <?php endif?>
+                </ul>
+            <?php else: ?>
+                <div class="main-header__user">
+                    <a href="<?php echo BASE_URL .'/app/authorization/login_form.php'?>" type="button" class="btn btn-outline-secondary main-header__enter-btn">Войти</a>
+                    <a href="<?php echo BASE_URL .'/app/authorization/registration_form.php'?>" type="button" class="btn btn-link main-header__reg-btn">Регистрация</a>
+                </div>
+            <?php endif?>
         </div>
         <div class="row">
             <nav class="navbar navbar-expand-lg main-header__navbar col-8">

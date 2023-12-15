@@ -1,48 +1,90 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT']."/app/database/db.php";
+$errMsg = '';
 
-$inputJSON = file_get_contents('php://input');
-$input = json_decode($inputJSON, true);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-login']))
 {
-    $email = $input['email'];
-    $pass = $input['pass'];
-    $existance = selectOne('user', ['email' => $email]); 
-    if ($existance){
-        if ($existance['email'] === $email)
-        {
-            if ($existance['password'] === $pass)
-            {
-                $_SESSION['id'] = $existance['id_user'];
-                $_SESSION['name'] = $existance['name'];
-                $_SESSION['email'] = $existance['email'];
-                $_SESSION['phone'] = $existance['phone_number'];
-                $_SESSION['id_role'] = $existance['id_role'];
-                $_SESSION['date'] = $existance['date_of_birth'];
-                $_SESSION['pass'] = $existance['password'];
-                $response = [
-                    'status' => 200
-                ];
-                echo json_encode($response);
-            } else {
-                $response = [
-                    'status' => 500
-                ];
-                echo json_encode($response);
-            }
-        }
+    $email = trim($_POST['email']);
+    $pass = trim($_POST['password']);
+    if ($email === '' || $pass === '')
+    {
+        $errMsg = "Не все поля заполнены";
+    }elseif(strlen($email) < 2 || strlen($pass) < 2) {
+        $errMsg = "более 2х символов";
     }else{
-        $response = [
-            'status' => 500
-        ];
-        echo json_encode($response);
+        $existance = selectOne('user', ['email' => $email]); 
+        if ($existance) {
+            if ($existance['email'] === $email)
+            {
+                if ($existance['password'] === $pass)
+                {
+                    $_SESSION['id'] = $existance['id_user'];
+                    $_SESSION['name'] = $existance['name'];
+                    $_SESSION['email'] = $existance['email'];
+                    $_SESSION['phone'] = $existance['phone_number'];
+                    $_SESSION['id_role'] = $existance['id_role'];
+                    $_SESSION['date'] = $existance['date_of_birth'];
+                    $_SESSION['pass'] = $existance['password'];
+                    header('location:' . BASE_URL . "/index_02.php");
+                } else {
+                    {
+                        $errMsg = 'Неверный пароль';
+                    }
+                }
+            }
+        } else {
+            $errMsg = 'Такого ползователя не существует';
+        }
     }
 } else {
-    $name = '';
+    $email = '';
     $pass = '';
 }
+
+// require_once $_SERVER['DOCUMENT_ROOT']."/app/database/db.php";
+
+// $inputJSON = file_get_contents('php://input');
+// $input = json_decode($inputJSON, true);
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST')
+// {
+//     $email = $input['email'];
+//     $pass = $input['pass'];
+//     $existance = selectOne('user', ['email' => $email]); 
+//     if ($existance){
+//         if ($existance['email'] === $email)
+//         {
+//             if ($existance['password'] === $pass)
+//             {
+//                 $_SESSION['id'] = $existance['id_user'];
+//                 $_SESSION['name'] = $existance['name'];
+//                 $_SESSION['email'] = $existance['email'];
+//                 $_SESSION['phone'] = $existance['phone_number'];
+//                 $_SESSION['id_role'] = $existance['id_role'];
+//                 $_SESSION['date'] = $existance['date_of_birth'];
+//                 $_SESSION['pass'] = $existance['password'];
+//                 $response = [
+//                     'status' => 200
+//                 ];
+//                 echo json_encode($response);
+//             } else {
+//                 $response = [
+//                     'status' => 500
+//                 ];
+//                 echo json_encode($response);
+//             }
+//         }
+//     }else{
+//         $response = [
+//             'status' => 500
+//         ];
+//         echo json_encode($response);
+//     }
+// } else {
+//     $name = '';
+//     $pass = '';
+// }
 
 // $name = getPOSTParameter('name');
 // $password = getPOSTParameter('password');

@@ -1,5 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/login.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -22,25 +23,27 @@
     <div class="text-center">
     
     <main class="form-signin">
-      <form>
+      <form method="POST" action="./login_form.php">
         <!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
         <h1 class="h3 mb-3 fw-normal">Вход</h1>
-    
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input value="<?=$email?>" name="email" type="email" class="form-control" id="login" placeholder="name@example.com">
           <label for="floatingInput">Почта</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input value="<?=$pass?>" name="password" type="password" class="form-control" id="password" placeholder="Password">
           <label for="floatingPassword">Пароль</label>
         </div>
     
-        <div class="checkbox mb-3">
-          <!-- <label>
+        <!-- <div class="checkbox mb-3">
+          <label>
             <input type="checkbox" value="remember-me"> Remember me
-          </label> -->
+          </label>
+        </div> -->
+        <div class="mb-12 col-12 col-md-12 err">
+            <p><?=$errMsg?></p>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+        <button name="submit-login" class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
         <!-- <p class="mt-5 mb-3 text-muted">© 2017–2021</p> -->
       </form>
     </main>
