@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 $errMsg = '';
 
+$authorsByAsc = findAuthorsByAsc();
 $authors = selectAll('author');
 
 //Код для формы создания автора
@@ -84,4 +85,12 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     deleteCond('author_has_books', ['id_author' => $id]);
     delete('author', $id);
     header('location:' . BASE_URL . "/admin/author/index.php");
+}
+
+//Код для редактирования автора
+if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_author']))  {
+    $id = $_GET['id_author'];
+    $author = findAuthorById($id);
+    $name = $author['first_name'] . " " . $author['last_name'] . " " . $author['patronymic'];
+    $books = findBooksOfAuthorsByIdAuthor($id);
 }

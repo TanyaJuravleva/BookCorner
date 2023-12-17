@@ -31,8 +31,9 @@
 }
 
 .feedback-block {
-    margin-left: 20px;
-    margin-bottom: 40px;
+    padding: 20px;
+    border: 2px solid rgb(209 197 197);
+    margin-bottom: 20px;
 }
 
 .feedback-block__user {
@@ -61,4 +62,13 @@
 .feedback-block__rating-block {
     display: flex;
     align-items: center;
+}
+
+.ant-rate-star-first{
+    color: #c4bcbc;
+    padding-bottom: 2px;
+}
+
+.feed-admin {
+    display: flex;
 }

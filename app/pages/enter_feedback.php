@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
-  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/feedback.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/enter_feedback.php';
   require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
@@ -22,29 +22,12 @@
     include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
     ?>
     <div class="container">
-        <div class="row profile-admin">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/admin/slidebar_admin.php" ?> 
-            <div class="profile-admin__table col-9">
-                <div class="profile-admin__btns">
-                    <a href="<?php echo BASE_URL.'/admin/feedback/create.php'?>" class="btn btn-primary btn-lg">Добавить комментарий</a>
-                    <a href="#" class="btn btn-secondary btn-lg">Редактировать комментарий</a>
-                </div>
-                <h2 class="profile-admin__table-title">Редактирование комментария</h2>
+        <!-- <div class="row profile-admin"> -->
+            <!-- <div class="profile-admin__table col-9"> -->
+                <h2 class="profile-admin__table-title">Создание комментария</h2>
                 <div class="info">
-                    <form class="form" action="./edit.php" method="POST">
-                        <input value="<?=$_SESSION['id_feedback']?>" type="hidden" name="id">
-                        <div class="col">
-                            <label>Индекс книги</label>
-                            <input value="<?=$id_book?>" class="form-control" type="number" name="id_book">
-                        </div>
-                        <div class="col">
-                            <label>Email пользователя</label>
-                            <input value="<?=$email?>" class="form-control" type="email" name="email">
-                        </div>
-                        <div class="col">
-                            <label>Дата комментария</label>
-                            <input value="<?=$date?>" class="form-control" type="datetime-local" name="date">
-                        </div>
+                    <form class="form" action="./enter_feedback.php" method="POST">
+                        <input value="<?=$_SESSION['id_book']?>" type="hidden" name="id_book"/>
                         <div class="col">
                             <label>Текст комментария</label>
                             <textarea name="text" class="form-control"><?=$text?></textarea>
@@ -57,12 +40,12 @@
                             <p><?=$errMsg?></p>
                         </div>
                         <div class="col">
-                            <button name="feedback-edit" class="btn btn-primary">Обновить комментарий</buton>
+                            <button name="feedback-enter" class="btn btn-primary">Создать комментарий</buton>
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
+            <!-- </div> -->
+        <!-- </div> -->
     </div>
   </body>
   </body>

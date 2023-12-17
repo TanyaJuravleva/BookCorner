@@ -25,6 +25,7 @@
     list-style: none;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .books-list__item {
@@ -57,7 +58,6 @@
 
 .book-author {
     font-size: 16px;
-    padding-bottom: 5px;
     cursor: pointer;
     text-decoration: none;
     color: #242424;

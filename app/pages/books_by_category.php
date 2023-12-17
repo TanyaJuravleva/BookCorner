@@ -33,5 +33,5 @@
         ?>
       </article>
   </body>
-  <script src="<?php echo BASE_URL.'/js/select-gen.js'?>"></script>
+  <script src="<?php echo BASE_URL.'/js/select-cat.js'?>"></script>
 </html>

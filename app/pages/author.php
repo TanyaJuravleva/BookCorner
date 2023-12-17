@@ -1,29 +1,41 @@
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT']."/app/database/db.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/app/controller/author.php";
+  require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+?>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заголовок страницы</title>
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/books_block.css">
-    <link rel="stylesheet" href="./css/form.css">
-    <link rel="stylesheet" href="./css/micromodal.css">
-    <link rel="stylesheet" href="./css/author.css">
+    <title>Главная</title>
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/node_modules/bootstrap/dist/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/styles.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/header_02.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/author.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/books_block.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/profile_admin.css'?>/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <meta property="og:title" content="Заголовок страницы в OG">
-    <meta property="og:description" content="Описание страницы в OG">
-    <meta property="og:image" content="https://example.com/image.jpg">
-    <meta property="og:url" content="https://example.com/">
   </head>
-  <body class="body">
-    <?php
-        include 'header.php'
+  <body>
+    <?php 
+      include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
     ?>
     <main class="page-content">
       <article class="main-block">
-        <h1 class="author-name">Пелевин Виктор Олегович</h1>
+        <h1 class="author-name"><?=$name?></h1>
+        <div>
+        <?php if(isset($_SESSION['id_role'])): ?>
+            <?php if ($_SESSION['id_role'] == 1): ?>
+              <div>
+              <div class="profile-admin__table-data_del col"><a href="<?=BASE_URL . '/admin/author/edit.php?del_id='.$id?>">Delete author</a></div>
+              <div class="profile-admin__table-data_change col"><a href="<?=BASE_URL . '/admin/author/edit.php?id='.$id?>">Change author</a></div>
+            </div>
+            <?php endif;?>
+        <?php endif;?>
+        </div>
       </article>
       <section class="author__products-wrapper">
         <h2 class="author-title">Все книги</h2>
@@ -44,7 +56,10 @@
                 </button>
             </div>
         </div>
-        <div class="main-block__books">
+        <?php 
+        include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
+        ?>
+        <!-- <div class="main-block__books">
         <ul class="books-list">
           <li class="books-list__item">
             <a>
@@ -73,11 +88,8 @@
             </a>
           </li>
         </ul>
-       </div>
+       </div> -->
       </section>
     </main>
   </body>
-  <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-  <script src="/js/form.js"></script>
-  <script src="/js/button.js"></script>
 </html>

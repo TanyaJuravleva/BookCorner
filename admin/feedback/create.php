@@ -34,11 +34,15 @@
                     <form class="form" action="./create.php" method="POST">
                         <div class="col">
                             <label>Индекс книги</label>
-                            <input value="<?=$name?>" class="form-control" type="number" name="name">
+                            <input value="<?=$id_book?>" class="form-control" type="number" name="id_book">
                         </div>
                         <div class="col">
                             <label>Email пользователя</label>
                             <input value="<?=$email?>" class="form-control" type="email" name="email">
+                        </div>
+                        <div class="col">
+                            <label>Дата комментария</label>
+                            <input value="<?=$date?>" class="form-control" type="datetime-local" name="date">
                         </div>
                         <div class="col">
                             <label>Текст комментария</label>

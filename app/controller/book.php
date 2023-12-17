@@ -174,21 +174,32 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-edit']))
     }elseif(strlen($name) < 2 || strlen($annotatinon) < 2) {
         $errMsg = "более 2х символов";
     }else{
-        if ($photo_file)
+        $book = '';
+        if ($photo_file['name'] != '')
         {
             unlink( $_SERVER['DOCUMENT_ROOT']. '\\images\books\\' . $_SESSION['photo_path']);
             if (photoSecurity($photo_file)) $photo_path = loadPhoto($photo_file);
+            $book = [
+                'name' => $name,
+                'id_series' => $id_seria,
+                'date_of_receipt' => $date_of_receipt,
+                'annotatinon' => $annotatinon,
+                'age_restrictions' => $age_restrictions,
+                'publish_year' => $publish_year,
+                'photo_path' => $photo_path
+            ];
+        }
+        else{
+            $book = [
+                'name' => $name,
+                'id_series' => $id_seria,
+                'date_of_receipt' => $date_of_receipt,
+                'annotatinon' => $annotatinon,
+                'age_restrictions' => $age_restrictions,
+                'publish_year' => $publish_year,
+            ];
         }
         unset($_SESSION['photo_path']);
-        $book = [
-            'name' => $name,
-            'id_series' => $id_seria,
-            'date_of_receipt' => $date_of_receipt,
-            'annotatinon' => $annotatinon,
-            'age_restrictions' => $age_restrictions,
-            'publish_year' => $publish_year,
-            'photo_path' => $photo_path
-        ];
         $id = $_POST['id'];
         //удалить старые author и genres
         deleteCond('book_has_genres', ['id_book' => $id]);
@@ -231,4 +242,47 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     deleteCond('book_has_genres', ['id_book' => $id]);
     delete('book', $id);
     header('location:' . BASE_URL . "/admin/book/index.php");
+}
+
+if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_genre']))  {
+    $id = $_GET['id_genre'];
+    $genre = findGenreByIdGenre($id);
+    $name = $genre['name'];
+    if (isset($_GET['sort']))  {
+        $_SESSION['sort'] = $_GET['sort'];
+        if ($_SESSION['sort'] === 'popular')
+        {
+            //print("genre" . $_SESSION['sort']);
+            $books = findBooksByGenreForPopular($id);
+        }
+        elseif ($_SESSION['sort'] === 'date')
+        {
+            //print("genre" . $_SESSION['sort']);
+            $books = findBooksByGenreForDate($id);
+        }
+        //$books = findBooksByGenre($id);
+    }
+}
+
+if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_category']))  {
+    $id = $_GET['id_category'];
+    $category = findCategoryByIdCategory($id);
+    $name = $category['name'];
+    if (isset($_GET['sort']))  {
+        $_SESSION['sort'] = $_GET['sort'];
+        if ($_SESSION['sort'] === 'popular')
+        {
+            //print("category" . $_SESSION['sort']);
+            $books = findBooksByCategoryForPopular($id);
+        }elseif ($_SESSION['sort'] === 'date'){
+            //print("category" . $_SESSION['sort']);
+            $books =findBooksByCategoryForDate($id);
+        }
+        //$books = findBooksByGenreForPopular($id);
+        //$books = findBooksByGenre($id);
+    }
+    // if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['sort']))  {
+    //     $_SESSION['sort'] = $_GET['sort'];
+    //     $books = findBookByCategory($id);
+    // }
 }

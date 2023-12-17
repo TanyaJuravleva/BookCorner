@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 $errMsg = '';
 
 $series = selectAll('series');
+$seriesForAsc = findSeriesByAsc();
 
 //Код для формы создания категории
 if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['seria-create']))  

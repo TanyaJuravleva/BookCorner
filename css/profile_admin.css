@@ -65,3 +65,12 @@
 .err {
     color: red;
 }
+
+.green-border {
+    border-color: green;
+}
+
+.profile-admin__table-data_change 
+{
+    color: green;
+}

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<?php echo BASE_URL.'/node_modules/bootstrap/dist/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?php echo BASE_URL.'/css/styles.css'?>">
     <link rel="stylesheet" href="<?php echo BASE_URL.'/css/header_02.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/persanal_data.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/profile.css'?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -24,13 +26,14 @@
             <h1 class="profile-headline">Личные данные</h1>
             <div class="profile-info">
                 <span class="profile-info__name"><?php echo $_SESSION['name']?></span>
-                <span class="profile-info__phone"><?php echo $_SESSION['phone']?></span>
-                <span class="profile-info__email"><?php echo $_SESSION['email']?></span>
+                <div class="str"><p class="str-name">Дата рождения:</p><span class="profile-info__date"><?php echo $_SESSION['date']?></span></div>
+                <div class="str"><p class="str-name">Номер телефона:</p><span class="profile-info__phone"><?php echo $_SESSION['phone']?></span></div>
+                <div class="str"><p class="str-name">Email:</p><span class="profile-info__email"><?php echo $_SESSION['email']?></span></div>
             </div>
         </div>
         <div class="personal-data">
             <div class="personal-data__submit">
-                <a class="menu-general__link" href="./form_edit_2.php">
+                <a class="menu-general__link" href="./form_edit_2.php?id_user=<?=$_SESSION['id']?>">
                 <div type="submit" disabled="disabled" class="button personal-data__button blue"> 
                     Изменить данные 
                 </div>

@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT']."/app/database/db.php";
-  require_once $_SERVER['DOCUMENT_ROOT']."/app/controller/book.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/app/controller/seria.php";
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="<?php echo BASE_URL.'/node_modules/bootstrap/dist/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?php echo BASE_URL.'/css/styles.css'?>">
     <link rel="stylesheet" href="<?php echo BASE_URL.'/css/header_02.css'?>">
-    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/books_block.css'?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -21,17 +20,13 @@
     <?php 
       include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
     ?>
-    <article class="main-block container">
-      <input value="<?=$id?>" type="hidden" id="id"/>
-       <h2 class="main-block__headline"><?=$name?></h2>
-        <select class="form-select" id="select">
-          <option <?php if($_SESSION['sort'] == 'popular'){echo 'selected';}?> id="popular" value="popular">По популярности</option>
-          <option <?php if($_SESSION['sort'] == 'date'){echo 'selected';}?> id="date" value="date">По дате поступления</option>
-        </select>
-       <?php 
-        include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
-        ?>
-      </article>
+    <div class="container first">
+        <ul>
+            <?php foreach($seriesForAsc as $key => $seria):?>
+                <h3><li><a href="<?php echo BASE_URL .'/app/pages/seria.php?id_seria='.$seria['id_series']?>"><?=$seria['name']?></a></li></h3>
+            <?php endforeach; ?>
+        </ul>
+    </div>
   </body>
-  <script src="<?php echo BASE_URL.'/js/select-gen.js'?>"></script>
+  </body>
 </html>

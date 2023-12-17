@@ -24,10 +24,24 @@
     margin-bottom: 6px;
 }
 
+
+.profile-info__date {
+    font-size: 18px;
+}
+
 .profile-info__phone {
-    margin-bottom: 2px;
+    font-size: 18px;
 }
 
 .profile-info__email {
+    font-size: 18px;
+}
 
+.str {
+    display: flex;
+}
+
+.str-name {
+    margin-right: 15px;
+    font-size: 18px;
 }

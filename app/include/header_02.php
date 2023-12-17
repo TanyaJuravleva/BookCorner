@@ -29,9 +29,9 @@
                     <ul class="navbar-nav main-header__list">
                         <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/index_02.php'?>">Главное</a></li>
                         <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/genre_02.php'?>">Жанры</a></li>
-                        <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="#">Авторы</a></li>
+                        <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/authors.php'?>">Авторы</a></li>
                         <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="#">Популярное</a></li>
-                        <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="#">Серии</a></li>
+                        <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/series.php'?>">Серии</a></li>
                     </ul>
                 </div>
             </nav>
