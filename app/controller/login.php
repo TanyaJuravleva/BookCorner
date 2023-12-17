@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-login']))
     }elseif(strlen($email) < 2 || strlen($pass) < 2) {
         $errMsg = "более 2х символов";
     }else{
-        $existance = selectOne('user', ['email' => $email]); 
+        $existance = findUserByEmail($email);
         if ($existance) {
             if ($existance['email'] === $email)
             {

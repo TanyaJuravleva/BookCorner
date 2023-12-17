@@ -162,6 +162,93 @@ function deleteCond($table, $params = [])
     dbCheckError($query);
 }
 
+function findBookByCategory($id_category)
+{
+    $sql = "SELECT DISTINCT book.id_book, book.name, book.photo_path FROM genre 
+        JOIN category ON category.id_category = genre.id_category
+        JOIN book_has_genres ON genre.id_genre = book_has_genres.id_genre
+        JOIN book ON book.id_book = book_has_genres.id_book
+        WHERE category.id_category = " . $id_category;
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findBooksByGenre($id_genre)
+{
+    $sql = "SELECT DISTINCT book.id_book, book.name, book.photo_path FROM genre 
+        JOIN book_has_genres ON genre.id_genre = book_has_genres.id_genre
+        JOIN book ON book.id_book = book_has_genres.id_book
+        WHERE genre.id_genre = " . $id_genre;
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findGenreByIdGenre($id_genre)
+{
+    return selectOne('genre', ['id_genre' => $id_genre]);
+}
+
+function findCategoryByIdCategory($id_category)
+{
+    return selectOne('category', ['id_category' => $id_category]);
+}
+
+function findUserByEmail($email)
+{
+    return selectOne('user', ['email' => $email]); 
+}
+
+function findUserById($id_user)
+{
+    return selectOne('user', ['id_user' => $id_user]); 
+}
+
+function findAuthorById($id_author)
+{
+    return selectOne('author', ['id_author' => $id_author]); 
+}
+
+function findGenresByBookID($id_book)
+{
+    $sql = "SELECT genre.id_genre, genre.name FROM genre 
+        JOIN book_has_genres ON genre.id_genre = book_has_genres.id_genre
+        JOIN book ON book.id_book = book_has_genres.id_book
+        WHERE book.id_book = " . $id_book;
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findAuthorsByBookID($id_book)
+{
+    $sql = "SELECT author.first_name, author.last_name, author.id_author FROM author 
+        JOIN author_has_books ON author_has_books.id_author = author.id_author
+        JOIN book ON book.id_book = author_has_books.id_book
+        WHERE book.id_book = " . $id_book;
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findFeedbackById($id_feedback)
+{
+    return selectOne('feedback', ['id_feedback' => $id_feedback]);
+}
+
+function findAllFeedbacksByBookId($id_book)
+{
+   return selectAll('feedback', ['id_book' => $id_book]);
+}
+
+
+
+
 //$arr = [
    // 'id_role' => ,
 //    'name' => 'ger'

@@ -14,7 +14,6 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['author-create']))
     if ($first_name === '')
     {
         $errMsg = "Поле имя не заполнено";
-        // || (strlen($last_name) < 2) || (strlen($patron) < 2)
     }elseif((strlen($first_name) < 2)) {
         $errMsg = "Имя должно быть более 2х символов";
     }else{
@@ -46,7 +45,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['author-create']))
 //Код для редактирования автора
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id']))  {
     $id = $_GET['id'];
-    $author = selectOne('author', ['id_author' => $id]);
+    $author = findAuthorById($id);
     $id = $author['id_author'];
     $first_name = $author['first_name'];
     $last_name = $author['last_name'];

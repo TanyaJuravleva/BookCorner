@@ -47,18 +47,16 @@
                       <div class="profile-admin__table-row col-4"><?=$book['name']?>s</div>
                       <div class="profile-admin__table-row col-2">
                         <?php
-                        $par = selectAll('author_has_books', ['id_book' => $book['id_book']]);
-                        foreach ($par as $key => $val) {
-                            $author = selectOne('author', ['id_author' => $val['id_author']]);
+                        $authorsBook = findAuthorsByBookID($book['id_book']);
+                        foreach ($authorsBook as $key => $author) {
                             echo $author['first_name'] . " " . $author['last_name'] . "<br>";
                         }
                         ?>
                       </div>
                       <div class="profile-admin__table-row col-3">
                         <?php
-                        $par = selectAll('book_has_genres', ['id_book' => $book['id_book']]);
-                        foreach ($par as $key => $val) {
-                            $genre = selectOne('genre', ['id_genre' => $val['id_genre']]);
+                        $genresBook = findGenresByBookID($book['id_book']);
+                        foreach ($genresBook as $key => $genre) {
                             echo $genre['name'] ."<br>";
                         }
                         ?>

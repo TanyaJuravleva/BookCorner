@@ -34,7 +34,7 @@
                     <div class="mb-12 col-12 col-md-12 err">
                             <p><?=$errMsg?></p>
                         </div>
-                    <form class="form" action="./create.php" method="POST">
+                    <form class="form" action="./create.php" method="POST" enctype="multipart/form-data">
                         <div class="col">
                             <label>Название</label>
                             <input value="<?=$name?>" class="form-control" type="text" name="name">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col">
                             <label>Загрузить фото книги</label>
-                            <input value="<?=$$photo_path?>" name="photo" type="file" class="form-control" id="inputGroupFile02">
+                            <input name="photo" type="file" class="form-control">
                         </div>
                         <label>Жанры</label>
                         <input value="<?=$str_book_genres?>" id="genres-js" name="genres" type="hidden">

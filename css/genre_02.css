@@ -1,0 +1,26 @@
+.genres-block{
+    margin:20px 20px;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.category-block {
+    /* width: max-content; */
+    padding: 20px;
+    border: 1px solid rgb(76, 65, 164);
+    margin: 13px;
+    max-width: 340px;
+}
+
+/* .category-name {
+    
+} */
+
+.genres-names {
+    list-style: inside;
+}
+
+.genre-name {
+    margin-left: 40px;
+    font-size: 19px;
+}

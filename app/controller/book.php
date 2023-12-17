@@ -9,6 +9,34 @@ $series = selectAll('series');
 $genres = selectAll('genre');
 $authors = selectAll('author');
 
+function photoSecurity($photo)
+{
+    $name = $photo['name'];
+    $type = $photo['type'];
+    $blacklist = array(".php", ".js", ".html");
+
+    foreach($blacklist as $row)
+    {
+        if(preg_match("/$row\$/i", $name)) return false;
+    }
+
+    if(($type != "image/png") && ($type != "image/jpg") && ($type != "image/jpeg")) return false;
+
+    return true;
+}
+
+function loadPhoto($photo)
+{
+    $type = $photo['type'];
+    $name = md5(microtime()).'.'.substr($type, strlen("image/"));
+    $dir = $_SERVER['DOCUMENT_ROOT'] . '/images/books/';
+    $uploadFile = $dir  .$name;
+
+    if(move_uploaded_file($photo['tmp_name'], $uploadFile)){
+        return $name;
+    }
+}
+
 //Код для формы создания книги
 if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-create']))  
 {
@@ -18,11 +46,14 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-create']))
     $annotatinon = trim($_POST['text']);
     $age_restrictions = trim($_POST['age']);
     $publish_year = trim($_POST['publish']);;
-    $photo_path = trim($_POST['photo']);
     $str_book_authors = trim($_POST['authors']);
     $str_book_genres = trim($_POST['genres']);
     $book_authors = explode(',', $str_book_authors);
     $book_genres = explode(',', $str_book_genres);
+    $photo_path = '';
+
+    $photo_file = $_FILES['photo'];
+
     if ($name === '' || $annotatinon === '' || $age_restrictions === '' || $publish_year === '') 
     {
         $errMsg = " Не все поля заполнены";
@@ -37,6 +68,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-create']))
                 $errMsg = "Такая книга уже есть";
             }
         }else{
+            if (photoSecurity($photo_file)) $photo_path = loadPhoto($photo_file);
             $book = [
                 'name' => $name,
                 'id_series' => $id_seria,
@@ -84,6 +116,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-create']))
     $book_genres = array();
     $str_book_authors = '';
     $str_book_genres = '';
+    $photo_file = array();
 }
 //Код для редактирования книги
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id']))  {
@@ -97,6 +130,8 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id']))  {
     $age_restrictions = $book['age_restrictions'];
     $publish_year = $book['publish_year'];
     $photo_path = $book['photo_path'];
+    $feedbacks = findAllFeedbacksByBookId($id);
+    $_SESSION['photo_path'] = $photo_path;
 
     $arr_sql_genres = selectAll('book_has_genres', ['id_book'=>$id]);
     $book_genres = array();
@@ -127,17 +162,24 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-edit']))
     $annotatinon = trim($_POST['text']);
     $age_restrictions = trim($_POST['age']);
     $publish_year = trim($_POST['publish']);;
-    $photo_path = trim($_POST['photo']);
     $str_book_authors = trim($_POST['authors']);
     $str_book_genres = trim($_POST['genres']);
     $book_authors = explode(',', $str_book_authors);
     $book_genres = explode(',', $str_book_genres);
+    $photo_file = $_FILES['photo'];
+
     if ($name === '' || $annotatinon === '' || $age_restrictions === '' || $publish_year === '') 
     {
         $errMsg = " Не все поля заполнены";
     }elseif(strlen($name) < 2 || strlen($annotatinon) < 2) {
         $errMsg = "более 2х символов";
     }else{
+        if ($photo_file)
+        {
+            unlink( $_SERVER['DOCUMENT_ROOT']. '\\images\books\\' . $_SESSION['photo_path']);
+            if (photoSecurity($photo_file)) $photo_path = loadPhoto($photo_file);
+        }
+        unset($_SESSION['photo_path']);
         $book = [
             'name' => $name,
             'id_series' => $id_seria,
@@ -183,6 +225,8 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-edit']))
 //Код для удаления книги
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
+    $book = selectOne('book', ['id_book' => $id]);
+    unlink( $_SERVER['DOCUMENT_ROOT']. '\\images\books\\' . $book['photo_path']);
     deleteCond('author_has_books', ['id_book' => $id]);
     deleteCond('book_has_genres', ['id_book' => $id]);
     delete('book', $id);

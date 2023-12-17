@@ -9,5 +9,6 @@
         <li><a class="sidebar-list__href" href="<?php echo BASE_URL.'/admin/category/index.php'?>">Категории</a></li>
         <li><a class="sidebar-list__href" href="<?php echo BASE_URL.'/admin/genre/index.php'?>">Жанры</a></li>
         <li><a class="sidebar-list__href" href="<?php echo BASE_URL.'/admin/seria/index.php'?>">Серии книг</a></li>
+        <li><a class="sidebar-list__href" href="<?php echo BASE_URL.'/admin/feedback/index.php'?>">Комментарии</a></li>
     </ul>
 </div>

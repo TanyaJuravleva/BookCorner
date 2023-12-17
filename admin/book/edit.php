@@ -34,7 +34,7 @@
                     <div class="mb-12 col-12 col-md-12 err">
                             <p><?=$errMsg?></p>
                         </div>
-                    <form class="form" action="./edit.php" method="POST">
+                    <form class="form" action="./edit.php" method="POST" enctype="multipart/form-data">
                         <input value="<?=$_SESSION['id_book']?>" type="hidden" name="id">
                         <div class="col">
                             <label>Название</label>
@@ -63,9 +63,10 @@
                             <label>Аннотация</label>
                             <textarea name="text" class="form-control"><?=$annotatinon?></textarea>
                         </div>
+                        <img width="200" height="100" src="<?=BASE_URL . '/images/books/' . $photo_path?>"></img>
                         <div class="col">
-                            <label>Загрузить фото книги</label>
-                            <input value="<?=$$photo_path?>" name="photo" type="file" class="form-control" id="inputGroupFile02">
+                            <label>Загрузить другое фото книги</label>
+                            <input name="photo" type="file" class="form-control">
                         </div>
                         <label>Жанры</label>
                         <input value="<?=$str_book_genres?>" id="genres-js" name="genres" type="hidden">
