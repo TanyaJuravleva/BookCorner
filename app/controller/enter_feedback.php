@@ -8,10 +8,38 @@ $errMsg = '';
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id']))  {
     $id_book = trim($_GET['id']);
     $id_user = trim($_SESSION['id']);
-    $date = 
-    $rating = '';
+    $_SESSION['id_book'] = $id_book;
+}
+
+if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['feedback-enter']))  
+{
+    $id_book = $_SESSION['id_book'];
+    $id_user = $_SESSION['id'];
+    $rating = (int)trim($_POST['rating']);
+    $date = date("Y-m-d H:i:s");//сегодня
+    $text = trim($_POST['text']);
+    if ($rating == NULL)
+    {
+        $errMsg = "Проставте рэйтинг";
+    }else{
+        $feedback = [
+            'id_book' => $id_book,
+            'id_user' => $id_user,
+            'text' => $text,
+            'rating' => $rating,
+            'date' => $date
+        ];
+        $id = insert('feedback', $feedback);
+        $id_book = findFeedbackById($id)['id_book'];
+        unset($_SESSION['id_book']);
+        header('location:' . BASE_URL . "/app/pages/book_02.php?id=".$id_book);
+    }
+} else {
+    $id_book = '';
+    $id_user = '';
     $text = '';
-    $_SESSION['id_feedback'] = $id_book;
+    $rating = '';
+    $date ='';
 }
 
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_feed']))  {
@@ -21,6 +49,8 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_feed']))  {
     $text = $feed['text'];
     $_SESSION['id_feedback'] = $id;
 }
+
+
 
 if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['feedback-edit']))  
 {

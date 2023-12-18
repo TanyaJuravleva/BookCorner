@@ -5,6 +5,10 @@ date_default_timezone_set('UTC');
 $errMsg = '';
 
 $books = selectAll('book');
+$booksNews = findNewBooks();
+$booksPopular = findPopularBooks();
+$booksNewsLimit = findNewBooksLimit();
+$booksPopularLimit = findPopularBooksLimit();
 $series = selectAll('series');
 $genres = selectAll('genre');
 $authors = selectAll('author');

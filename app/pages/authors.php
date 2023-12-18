@@ -1,6 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT']."/app/database/db.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/app/controller/author.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/app/controller/category.php";
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 ?>
 <!DOCTYPE html>
@@ -21,6 +22,21 @@
       include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
     ?>
     <div class="container first">
+      <form method="POST">
+      <div class="input-group">
+        <select name="select">
+          <option value="All">All</option>
+          <?php foreach($categories as $key => $category):?>
+              <option <?php if($sel =='id_category='.$category['id_category']){echo 'selected';}?> value="<?='id_category='.$category['id_category']?>"><?=$category['name']?></option>
+              <?php $genres = selectAll('genre', ['id_category'=> $category['id_category']]); ?>
+              <?php foreach($genres as $key => $genre):?>
+                <option <?php if($sel =='id_genre='.$genre['id_genre']){echo 'selected';}?> value="<?='id_genre='.$genre['id_genre']?>">><?=$genre['name']?></option>
+              <?php endforeach; ?>
+            <?php endforeach;?>
+          </select>
+        <button class="btn btn-outline-secondary" name="choose">Выбрать</button>
+      </div>
+      </form>
         <ul>
             <?php foreach($authorsByAsc as $key => $author):?>
                 <h3><li><a href="<?php echo BASE_URL .'/app/pages/author.php?id_author='.$author['id_author']?>"><?=$author['first_name'] . " " . $author['last_name'] . " " . $author['patronymic']?></a></li></h3>

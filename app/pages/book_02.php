@@ -69,6 +69,7 @@
                     ?>
                   </li>
                   <li>Год издания: <?=$publish_year?></li>
+                  <li>Дата поступдения: <?=$date_of_receipt?></li>
                   <li>Возрастное ограничение: <?=$age_restrictions?></li>
                 </ul>
             </div>

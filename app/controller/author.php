@@ -94,3 +94,18 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_author']))  {
     $name = $author['first_name'] . " " . $author['last_name'] . " " . $author['patronymic'];
     $books = findBooksOfAuthorsByIdAuthor($id);
 }
+
+$sel ='';
+if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['choose']))  {
+    $sel = $_POST['select'];
+    $arr = explode( '=', $sel);
+    $id_name = $arr[0];
+    if ($id_name === "All")
+    {
+        $authorsByAsc = findAuthorsByAsc();
+    }elseif($id_name === "id_genre"){
+        $authorsByAsc = findAuthorsByGenreId($arr[1]);
+    }elseif($id_name === "id_category"){
+        $authorsByAsc = findAuthorsByCategoryId($arr[1]);
+    }
+}

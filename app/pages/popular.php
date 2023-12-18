@@ -21,22 +21,13 @@
     <?php 
       include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
     ?>
-    <main class="page-content container">
-      <article class="main-block">
-        <h2 class="main-block__headline"><a href="<?=BASE_URL .'/app/pages/news.php'?>">Новинки книг</a></h2>
-        <?php 
-            $books = $booksNewsLimit;
-            include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
-        ?>
-      </article>
-      <article class="main-block">
-        <h2 class="main-block__headline"><a href="<?=BASE_URL .'/app/pages/popular.php'?>">Популярные книги</a></h2>
-        <?php 
-            $books = $booksPopularLimit;
-            include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
-        ?>
-      </article>
-    </main>
+    <div class="main-block container">
+    <h2 class="main-block__headline">Популярное</h2>
+    <?php 
+        $books = $booksPopular;
+        include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
+    ?>
+    </div>
   </body>
   </body>
 </html>

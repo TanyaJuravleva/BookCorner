@@ -1,5 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/controller/reg.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -22,36 +24,42 @@
     <div class="text-center">
     
     <main class="form-reg">
-      <form>
+      <form action="./registration_form.php" method="POST">
         <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
         <div class="mb-3 row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Логин</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword">
+              <input value="<?=$name?>" class="form-control" type="text" name="name">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword">
+              <input value="<?=$email?>" class="form-control" type="email" name="email">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword">
+            <input value="<?=$pass?>" name="pass" type="password" class="form-control" id="pass">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Номер телефона</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword">
+              <input value="<?=$phone?>" class="form-control" type="tel" name="phone" pattern="\+7[0-9]{10}" placeholder="+79017389504">
             </div>
         </div>
-    
-        <div class="checkbox mb-3">
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Дата рождения</label>
+            <div class="col-sm-10">
+            <input value="<?=$date?>" class="form-control" type="date" name="date">
+            </div>
         </div>
-        <button class="w-100 btn btn-lg btn-primary form-reg__btn" type="submit">Зарегистрироваться</button>
+        <div class="mb-12 col-12 col-md-12 err">
+            <p><?=$errMsg?></p>
+        </div>
+        <button name="user-create" class="w-100 btn btn-lg btn-primary form-reg__btn">Зарегистрироваться</button>
       </form>
     </main>
 </div>

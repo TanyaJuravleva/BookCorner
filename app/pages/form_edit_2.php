@@ -47,7 +47,7 @@
                         </div>
                         <div class="col">
                             <label>Номер телефона</label>
-                            <input value="<?=$phone_number?>" class="form-control" type="tel" name="phone" pattern="+7[0-9]{10}" placeholder="+79017389504">
+                            <input value="<?=$phone_number?>" class="form-control" type="tel" name="phone" pattern="\+7[0-9]{10}" placeholder="+79017389504">
                         </div>
                         <div class="mb-12 col-12 col-md-12 err">
                             <p><?=$errMsg?></p>

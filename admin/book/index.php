@@ -44,7 +44,7 @@
                 <?php foreach($books as $key => $book):?>
                   <div class="profile-admin__table-data row">
                       <div class="profile-admin__table-row col-1"><?=$book['id_book']?></div>
-                      <div class="profile-admin__table-row col-4"><?=$book['name']?>s</div>
+                      <div class="profile-admin__table-row col-4"><?=$book['name']?></div>
                       <div class="profile-admin__table-row col-2">
                         <?php
                         $authorsBook = findAuthorsByBookID($book['id_book']);

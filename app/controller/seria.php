@@ -71,3 +71,10 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     delete('series', $id);
     header('location:' . BASE_URL . "/admin/seria/index.php");
 }
+
+if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_seria']))  {
+    $id = $_GET['id_seria'];
+    $seria = selectOne('series', ['id_series' => $id]);
+    $name = $seria['name'];
+    $books = findBooksOfSeriesBySeriesId($id);
+}

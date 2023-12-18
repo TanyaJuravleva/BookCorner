@@ -6,6 +6,12 @@
     <div class="container cont-top">
         <div class="row">
             <h1 class="main-header__title row"><a href="<?php echo BASE_URL .'/index_02.php'?>">BOOKCORNER</a></h1>
+            <div class="input-group mb-3 search">
+                <form action="<?=BASE_URL .'/app/pages/search.php'?>" method="POST">
+                    <input name="search" type="text" class="form-control" placeholder="Search">
+                </form>
+                <!-- <button class="btn btn-outline-secondary" id="button-addon2">e</button> -->
+            </div>
             <?php if (isset($_SESSION['id'])):?>
                 <ul class="main-header__list main-header__user">
                     <li class="main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL. '/app/pages/profile_02.php'?>"><?=$_SESSION['name']?></a></li>
@@ -30,7 +36,8 @@
                         <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/index_02.php'?>">Главное</a></li>
                         <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/genre_02.php'?>">Жанры</a></li>
                         <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/authors.php'?>">Авторы</a></li>
-                        <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="#">Популярное</a></li>
+                        <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/popular.php'?>">Популярное</a></li>
+                        <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/news.php'?>">Новинки</a></li>
                         <li class="nav-item main-header__list_item"><a class="main-header__list_item-href" href="<?php echo BASE_URL .'/app/pages/series.php'?>">Серии</a></li>
                     </ul>
                 </div>

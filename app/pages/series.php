@@ -23,7 +23,7 @@
     <div class="container first">
         <ul>
             <?php foreach($seriesForAsc as $key => $seria):?>
-                <h3><li><a href="<?php echo BASE_URL .'/app/pages/seria.php?id_seria='.$seria['id_series']?>"><?=$seria['name']?></a></li></h3>
+                <h3><li><a href="<?php echo BASE_URL .'/app/pages/books_by_seria.php?id_seria='.$seria['id_series']?>"><?=$seria['name']?></a></li></h3>
             <?php endforeach; ?>
         </ul>
     </div>

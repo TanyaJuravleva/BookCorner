@@ -355,6 +355,16 @@ function findSeriesByAsc()
     return mysqli_fetch_all($query, MYSQLI_ASSOC);
 }
 
+function findBooksOfSeriesBySeriesId($id_seria)
+{
+    $sql = "SELECT * FROM book WHERE id_series = ".$id_seria .
+            " ORDER BY name ASC";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
 function findBooksOfAuthorsByIdAuthor($id_author)
 {
     $sql = "SELECT * FROM book 
@@ -362,6 +372,93 @@ function findBooksOfAuthorsByIdAuthor($id_author)
             JOIN author ON author.id_author = author_has_books.id_author 
             WHERE author.id_author = ". $id_author . 
            " ORDER BY book.date_of_receipt DESC";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findNewBooks()
+{
+    $sql = "SELECT * FROM book ORDER BY date_of_receipt DESC";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findNewBooksLimit()
+{
+    $sql = "SELECT * FROM book ORDER BY date_of_receipt DESC LIMIT 5";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findPopularBooks()
+{
+    $sql = "SELECT DISTINCT book.id_book, book.name, book.photo_path, AVG(feedback.rating) as rat FROM book 
+    LEFT JOIN feedback ON feedback.id_book = book.id_book
+        GROUP BY book.id_book
+        ORDER BY rat DESC";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findPopularBooksLimit()
+{
+    $sql = "SELECT DISTINCT book.id_book, book.name, book.photo_path, AVG(feedback.rating) as rat FROM book 
+        LEFT JOIN feedback ON feedback.id_book = book.id_book
+        GROUP BY book.id_book
+        ORDER BY rat DESC LIMIT 5";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findAuthorsByGenreId($id_genre)
+{
+    $sql = "SELECT  DISTINCT author.id_author, author.first_name, author.last_name, author.patronymic, AVG(feedback.rating) as rat FROM author 
+        JOIN author_has_books ON author_has_books.id_author = author.id_author
+        JOIN book ON book.id_book = author_has_books.id_book
+        LEFT JOIN feedback ON feedback.id_book = book.id_book
+        JOIN book_has_genres ON book_has_genres.id_book = book.id_book
+        JOIN genre ON genre.id_genre = book_has_genres.id_genre
+        WHERE genre.id_genre = " . $id_genre .
+        " GROUP BY author.id_author";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findAuthorsByCategoryId($id_category)
+{
+    $sql = "SELECT  DISTINCT author.id_author, author.first_name, author.last_name, author.patronymic, AVG(feedback.rating) as rat FROM author 
+        JOIN author_has_books ON author_has_books.id_author = author.id_author
+        JOIN book ON book.id_book = author_has_books.id_book
+        LEFT JOIN feedback ON feedback.id_book = book.id_book
+        JOIN book_has_genres ON book_has_genres.id_book = book.id_book
+        JOIN genre ON genre.id_genre = book_has_genres.id_genre
+        JOIN category ON category.id_category = genre.id_category
+        WHERE category.id_category = " . $id_category .
+        " GROUP BY author.id_author";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+//поиск по названию книги
+function findBooksBySearch($text)
+{
+    $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
+    $sql = "SELECT  * FROM book
+        WHERE name LIKE '%$text%'";
     global $link;
     $query = mysqli_query($link, $sql);
     dbCheckError($query);

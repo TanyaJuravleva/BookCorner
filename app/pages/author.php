@@ -23,7 +23,7 @@
     <?php 
       include $_SERVER['DOCUMENT_ROOT']."/app/include/header_02.php";
     ?>
-    <main class="page-content">
+    <main class="page-content container">
       <article class="main-block">
         <h1 class="author-name"><?=$name?></h1>
         <div>
@@ -37,7 +37,7 @@
         <?php endif;?>
         </div>
       </article>
-      <section class="author__products-wrapper">
+      <!-- <section class="author__products-wrapper">
         <h2 class="author-title">Все книги</h2>
         <div class="author-products-toggle">
             <div class="author-products-toggle__item">
@@ -55,7 +55,7 @@
                     <span> По сериям </span>
                 </button>
             </div>
-        </div>
+        </div> -->
         <?php 
         include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
         ?>

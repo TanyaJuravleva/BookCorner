@@ -69,6 +69,10 @@
     padding: 0;
 }
 
+.search {
+    max-width:200px;
+}
+
 @media (max-width: 992px)
 {
     .main-header__title {

@@ -29,6 +29,8 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['user-edit']))
         $errMsg = "Не все поля заполнены";
     }elseif(strlen($name) < 2 || strlen($email) < 2) {
         $errMsg = "более 2х символов";
+    }elseif (strlen($phone_number) < 12){
+        $errMsg = "Телефон содержит 12 символов";
     }else{
         $user = [
             'name' => $name,
