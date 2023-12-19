@@ -27,7 +27,7 @@
             <div class="profile-admin__table col-9">
                 <div class="profile-admin__btns">
                     <a href="<?php echo BASE_URL.'/admin/feedback/create.php'?>" class="btn btn-primary btn-lg">Добавить комментарий</a>
-                    <a href="#" class="btn btn-secondary btn-lg">Редактировать комментарий</a>
+                    <!-- <a href="#" class="btn btn-secondary btn-lg">Редактировать комментарий</a> -->
                 </div>
                 <h2 class="profile-admin__table-title">Управление комментарием</h2>
                 <div>

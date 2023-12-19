@@ -27,7 +27,7 @@
             <div class="profile-admin__table col-9">
                 <div class="profile-admin__btns">
                     <a href="<?php echo BASE_URL.'/admin/author/create.php'?>" class="btn btn-primary btn-lg">Добавить автора</a>
-                    <a href="#" class="btn btn-secondary btn-lg">Редактировать автора</a>
+                    <!-- <a href="#" class="btn btn-secondary btn-lg">Редактировать автора</a> -->
                 </div>
                 <h2 class="profile-admin__table-title">Управление автором</h2>
                 <div>

@@ -27,7 +27,7 @@
             <div class="profile-admin__table col-9">
                 <div class="profile-admin__btns">
                     <a href="<?php echo BASE_URL.'/admin/category/create.php'?>" class="btn btn-primary btn-lg">Добавить категорию</a>
-                    <a href="#" class="btn btn-secondary btn-lg">Редактировать категорию</a>
+                    <!-- <a href="#" class="btn btn-secondary btn-lg">Редактировать категорию</a> -->
                 </div>
                 <h2 class="profile-admin__table-title">Управление категориями</h2>
                 <div>

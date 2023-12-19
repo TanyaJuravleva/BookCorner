@@ -27,7 +27,7 @@
             <div class="profile-admin__table col-9">
                 <div class="profile-admin__btns">
                     <a href="<?php echo BASE_URL.'/admin/seria/create.php'?>" class="btn btn-primary btn-lg">Добавить серию</a>
-                    <a href="#" class="btn btn-secondary btn-lg">Редактировать серию</a>
+                    <!-- <a href="#" class="btn btn-secondary btn-lg">Редактировать серию</a> -->
                 </div>
                 <h2 class="profile-admin__table-title">Управление сериями</h2>
                 <div>

@@ -37,7 +37,7 @@
         <button class="btn btn-outline-secondary" name="choose">Выбрать</button>
       </div>
       </form>
-        <ul>
+        <ul style="padding-top: 20px;">
             <?php foreach($authorsByAsc as $key => $author):?>
                 <h3><li><a href="<?php echo BASE_URL .'/app/pages/author.php?id_author='.$author['id_author']?>"><?=$author['first_name'] . " " . $author['last_name'] . " " . $author['patronymic']?></a></li></h3>
             <?php endforeach; ?>

@@ -528,6 +528,7 @@ function findNotThisAuthor($id_author, $id_book)
     return mysqli_fetch_all($query, MYSQLI_ASSOC);
 }
 
+//найти все отзывы пользователя
 function findAllBooksWithFeedbackByUserId($id_user)
 {
     $sql = "SELECT  * FROM book 
@@ -551,6 +552,7 @@ function findBookAnotherGenres($id_genre, $id_book)
     return mysqli_fetch_all($query, MYSQLI_ASSOC);
 }
 
+//удаление книги
 function deleteBook($id)
 {
     $book = selectOne('book', ['id_book' => $id]);
@@ -561,6 +563,7 @@ function deleteBook($id)
     delete('book', $id);
 }
 
+//удаление жанра
 function deleteGenre($id)
 {
     $booksOfGenre = selectAll('book_has_genres', ['id_genre' => $id]);

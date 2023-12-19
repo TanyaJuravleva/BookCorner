@@ -27,7 +27,7 @@
             <div class="profile-admin__table col-9">
                 <div class="profile-admin__btns">
                     <a href="<?php echo BASE_URL.'/admin/user/create.php'?>" class="btn btn-primary btn-lg">Добавить пользователя</a>
-                    <a href="#" class="btn btn-secondary btn-lg">Редактировать пользователя</a>
+                    <!-- <a href="#" class="btn btn-secondary btn-lg">Редактировать пользователя</a> -->
                 </div>
                 <h2 class="profile-admin__table-title">Управление пользователями</h2>
                 <div>

@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="<?php echo BASE_URL.'/css/header_02.css'?>">
     <link rel="stylesheet" href="<?php echo BASE_URL.'/css/book.css'?>">
     <link rel="stylesheet" href="<?php echo BASE_URL.'/css/feedback.css'?>">
-    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/profile_admin.css'?>/">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/profile_admin.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL.'/css/books_block.css'?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -36,6 +37,10 @@
                             <a href="<?php echo BASE_URL .'/app/pages/author.php?id_author='.$id_author?>"><?=$author['first_name'] . " " . $author['last_name'] . $author['patronymic'] . "<br>"?></a>
                     </h3>
                 <?php endforeach;?>
+                <div class="book-rating">
+                <svg width="16" height="16" fill="#ffc72c"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.486 13.376a1 1 0 00-.973 0l-2.697 1.502a1 1 0 01-1.474-1.033l.543-3.35a1 1 0 00-.27-.855L1.277 7.225a1 1 0 01.566-1.684l3.136-.483a1 1 0 00.754-.566l1.361-2.921a1 1 0 011.813 0l1.362 2.921a1 1 0 00.754.566l3.136.483a1 1 0 01.566 1.684l-2.34 2.415a1 1 0 00-.269.856l.542 3.349a1 1 0 01-1.473 1.033l-2.698-1.502z"></path></svg>
+                <span class="book-rating__dig"><?=substr(strval(findRatingByBookId($id)['avg_rating']), 0, 3);?></span>
+                </div>
                 <ul class="book-main__info">
                   <li>Серия: <a href="<?php echo BASE_URL .'/app/pages/books_by_seria.php?id_seria='.$id_seria?>">
                     <?php 
