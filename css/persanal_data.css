@@ -1,5 +1,7 @@
 .personal-data {
-    padding-top: 23px;
+    /* padding-top: 15px; */
+    max-width: max-content;
+    text-align: center;
 }
 
 .personal-data__line {
@@ -96,6 +98,7 @@
     flex-wrap: nowrap;
     gap: 24px;
     margin-top: 8px;
+    margin-bottom: 11px;
 }
 
 .personal-data .personal-data__button {
@@ -155,4 +158,9 @@
     line-height: 18px;
     min-width: 240px;
     width: auto;
+}
+
+.exit-bitton {
+    border: 0px;
+    color: red;
 }

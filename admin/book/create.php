@@ -48,11 +48,11 @@
                         </select>
                         <div class="col">
                             <label>Возрастное ограничение</label>
-                            <input value="<?=$age_restrictions?>" class="form-control" type="text" name="age">
+                            <input value="<?=$age_restrictions?>" class="form-control" type="number" name="age" min="0" max="21">
                         </div>
                         <div class="col">
                             <label>Год публикации</label>
-                            <input value="<?=$publish_year?>" class="form-control" type="number" name="publish" min="1900" max="2023" step="1"/>
+                            <input value="<?=$publish_year?>" class="form-control" type="number" name="publish" min="1901" max="2023" step="1"/>
                         </div>
                         <div class="col">
                             <label>Аннотация</label>

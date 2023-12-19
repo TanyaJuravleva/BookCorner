@@ -50,8 +50,8 @@
                             <input value="<?=$password?>" class="form-control" type="text" name="pass">
                         </div>
                         <div class="col">
-                            <label>Номер телефона</label>
-                            <input value="<?=$phone_number?>" class="form-control" type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                            <label>Номер телефона(12символов - +79999777555)</label>
+                            <input value="<?=$phone_number?>" class="form-control" type="tel" name="phone" pattern="\+7[0-9]{10}" placeholder="+79017389504">
                         </div>
                         <label>Роль</label>
                         <select name="user-role" class="form-select" aria-label="">

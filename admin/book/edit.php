@@ -53,7 +53,7 @@
                         </div>
                         <div class="col">
                             <label>Год публикации</label>
-                            <input value="<?=$publish_year?>" class="form-control" type="number" name="publish" min="1900" max="2023" step="1"/>
+                            <input value="<?=$publish_year?>" class="form-control" type="number" name="publish" min="1901" max="2023" step="1"/>
                         </div>
                         <div class="col">
                             <label>Дата поступления</label>
@@ -63,7 +63,7 @@
                             <label>Аннотация</label>
                             <textarea name="text" class="form-control"><?=$annotatinon?></textarea>
                         </div>
-                        <img width="200" height="100" src="<?=BASE_URL . '/images/books/' . $photo_path?>"></img>
+                        <img width="150" height="190" src="<?php if ($photo_path) {echo BASE_URL . '/images/books/'. $photo_path;} else {echo BASE_URL . '/images/no_photo.png';}?>"></img>
                         <div class="col">
                             <label>Загрузить другое фото книги</label>
                             <input name="photo" type="file" class="form-control">

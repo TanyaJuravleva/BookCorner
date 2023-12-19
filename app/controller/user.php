@@ -18,7 +18,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['user-create']))
     if ($name === '' || $email === '' || $password === '' || $id_role == ''){
         $errMsg = "Не все поля заполнены";
     }elseif(strlen($name) < 2 || strlen($email) < 2) {
-        $errMsg = "более 2х символов";
+        $errMsg = "Имя и email более 2х символов";
     }else{
         $existance = selectOne('user', ['email' => $email]); 
         if ($existance['email'] == $email)
@@ -92,6 +92,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['user-edit']))
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
     //удаление feedback
+    deleteCond('feedback', ['id_user' => $id]);
     delete('user', $id);
     header('location:' . BASE_URL . "/admin/user/index.php");
 }

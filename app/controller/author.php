@@ -3,7 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/database/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 $errMsg = '';
 
-$authorsByAsc = findAuthorsByAsc();
+//$authorsByAsc = findAuthorsByAsc();
+$authorsByAsc = findAuthorsByRating();
 $authors = selectAll('author');
 
 //Код для формы создания автора
@@ -82,6 +83,17 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['author-edit']))
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
     //удалить книгу
+    $booksOfAuthor = selectAll('author_has_books', ['id_author' => $id]);
+
+    foreach($booksOfAuthor as $key => $val)
+    {
+        $id_book = $val['id_book'];
+        $arr = findNotThisAuthor($id, $id_book);
+        if (!$arr)
+        {
+            deleteBook($id_book);
+        } 
+    }
     deleteCond('author_has_books', ['id_author' => $id]);
     delete('author', $id);
     header('location:' . BASE_URL . "/admin/author/index.php");
@@ -96,13 +108,18 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['id_author']))  {
 }
 
 $sel ='';
+// if (($_SERVER['REQUEST_METHOD'] === 'GET'))  {
+//     $authorsByAsc = findAuthorsByRating();
+// }
+
 if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['choose']))  {
     $sel = $_POST['select'];
     $arr = explode( '=', $sel);
     $id_name = $arr[0];
     if ($id_name === "All")
     {
-        $authorsByAsc = findAuthorsByAsc();
+        $authorsByAsc = findAuthorsByRating();
+        //$authorsByAsc = findAuthorsByAsc();
     }elseif($id_name === "id_genre"){
         $authorsByAsc = findAuthorsByGenreId($arr[1]);
     }elseif($id_name === "id_category"){

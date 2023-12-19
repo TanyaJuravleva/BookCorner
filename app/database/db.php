@@ -6,7 +6,7 @@ function tt($value) {
     echo '<pre>';
     print_r($value);
     echo '</pre>';
-    exit();
+    //exit();
 }
 
 //проверка выполнения запроса к БД
@@ -308,7 +308,6 @@ function findAllFeedbacksByBookId($id_book)
     $query = mysqli_query($link, $sql);
     dbCheckError($query);
     return mysqli_fetch_all($query, MYSQLI_ASSOC);
-   //return selectAll('feedback', ['id_book' => $id_book]);
 }
 
 function findCategoryByBookId($id_book)
@@ -429,7 +428,8 @@ function findAuthorsByGenreId($id_genre)
         JOIN book_has_genres ON book_has_genres.id_book = book.id_book
         JOIN genre ON genre.id_genre = book_has_genres.id_genre
         WHERE genre.id_genre = " . $id_genre .
-        " GROUP BY author.id_author";
+        " GROUP BY author.id_author
+          ORDER BY rat DESC";
     global $link;
     $query = mysqli_query($link, $sql);
     dbCheckError($query);
@@ -446,7 +446,47 @@ function findAuthorsByCategoryId($id_category)
         JOIN genre ON genre.id_genre = book_has_genres.id_genre
         JOIN category ON category.id_category = genre.id_category
         WHERE category.id_category = " . $id_category .
-        " GROUP BY author.id_author";
+        " GROUP BY author.id_author
+          ORDER BY rat DESC";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findAuthorsByRating()
+{
+    $sql = "SELECT  DISTINCT author.id_author, author.first_name, author.last_name, author.patronymic, AVG(feedback.rating) as rat FROM author 
+        JOIN author_has_books ON author_has_books.id_author = author.id_author
+        JOIN book ON book.id_book = author_has_books.id_book
+        LEFT JOIN feedback ON feedback.id_book = book.id_book
+         GROUP BY author.id_author
+         ORDER BY rat DESC";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
+function findNameByAsc($table_name, $params =[])
+{
+    $sql = "SELECT * FROM " . $table_name;
+    if (!empty($params)){
+        $i = 0;
+        foreach($params as $key => $value){
+            if (!is_numeric($value)){
+                $value = "'" . $value . "'";
+            }
+            if ($i === 0){
+                $sql = $sql . " WHERE $key = $value";
+            }
+            else{
+                $sql = $sql . " AND $key = $value";
+            }
+            $i++;
+        }
+    }
+    $sql = $sql . " ORDER BY name ASC";
     global $link;
     $query = mysqli_query($link, $sql);
     dbCheckError($query);
@@ -465,71 +505,60 @@ function findBooksBySearch($text)
     return mysqli_fetch_all($query, MYSQLI_ASSOC);
 }
 
+function findNotThisAuthor($id_author, $id_book)
+{
+    $sql = "SELECT  * FROM author_has_books WHERE id_author != " . $id_author . " AND id_book = " . $id_book;
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
 
-//$arr = [
-   // 'id_role' => ,
-//    'name' => 'ger'
-//];
+function findAllBooksWithFeedbackByUserId($id_user)
+{
+    $sql = "SELECT  * FROM book 
+            JOIN feedback ON feedback.id_book = book.id_book
+            JOIN user ON feedback.id_user = user.id_user
+            WHERE user.id_user = " . $id_user;
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
 
-//insert('role', $arr);
-//tt(selectAll('role'));
+function findBookAnotherGenres($id_genre, $id_book)
+{
+    $sql = "SELECT * FROM book
+            JOIN book_has_genres ON book_has_genres.id_book = book.id_book
+            WHERE book_has_genres.id_genre != " . $id_genre . " AND book.id_book = " . $id_book;
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
 
-//  delete('role', 4);
-//  tt(selectAll('role'));
+function deleteBook($id)
+{
+    $book = selectOne('book', ['id_book' => $id]);
+    unlink( $_SERVER['DOCUMENT_ROOT']. '\\images\books\\' . $book['photo_path']);
+    deleteCond('feedback', ['id_book' => $id]);
+    deleteCond('author_has_books', ['id_book' => $id]);
+    deleteCond('book_has_genres', ['id_book' => $id]);
+    delete('book', $id);
+}
 
-// $arr = [
-//     'name' => 'turbo'
-// ];
-
-// update('role', 3, $arr);
-// tt(selectAll('role'));
-
-// $arr = [
-//     'id_role' => NULL,
-//     'name' => 'ger'
-// ];
-
-//insert('role', $arr);
-//tt(selectAll('role'));
-
-// $params = [
-//     //'id_role' => 2,
-//     //'name' => 'bill'
-// ];
-// tt(selectOne('user', $params));
-//if ($query)
-//{
-//    while ($row = mysqli_fetch_array($query)) {
- //       print($row);
- //   }
-//}
-//$user = mysqli_fetch_assoc($query);
-
-//for ($row as $user)
-//{
-////    print($row);
-//}
-// if (!empty($user)) {
-// } else {
-// }
-// function correctConenctToBD()
-// {
-//     include __DIR__.'/boot.php';
-//     $link = connectToDB();
-    
-//     if ($link == false){
-//         print("Ошибка: Невозможно подключиться к MySQL " . mysqli_connect_error());
-//         return;
-//     }
-//     else {
-//         mysqli_set_charset($link, "utf8");
-//         return $link;
-//     }
-// }
-
-
-
-//echo phpinfo();
-//$link = mysqli_connect("127.0.0.1", "root", "123321tany", "bookcorner");
-//$conn = new mysqli("localhost", "root", "123321tany", "hotelbooking");
-?> 
+function deleteGenre($id)
+{
+    $booksOfGenre = selectAll('book_has_genres', ['id_genre' => $id]);
+    foreach($booksOfGenre as $key => $val)
+    {
+        $id_book = $val['id_book'];
+        $arr = findBookAnotherGenres($id, $id_book);
+        if (!$arr)
+        {
+            deleteBook($id_book);
+        } 
+    }
+    deleteCond('book_has_genres', ['id_genre' => $id]);
+    delete('genre', $id);
+}

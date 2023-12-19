@@ -27,7 +27,7 @@
       <article class="book">
         <div>
         <div class="book__info">
-            <img class="book__info_img" src="<?=BASE_URL . '/images/books/'. $photo_path?>">
+            <img class="book__info_img" src="<?php if ($photo_path) {echo BASE_URL . '/images/books/'. $photo_path;} else {echo BASE_URL . '/images/no_photo.png';}?>">
             <div class="book__ifo_main">
                 <h2 class="book-main__name"><?=$name?></h2>
                 <?php foreach($book_authors as $key => $id_author):?>
@@ -39,7 +39,7 @@
                     </h3>
                 <?php endforeach;?>
                 <ul class="book-main__info">
-                  <li>Серия: 
+                  <li>Серия: <a href="<?php echo BASE_URL .'/app/pages/books_by_seria.php?id_seria='.$id_seria?>">
                     <?php 
                     if($id_seria) 
                     {
@@ -48,25 +48,19 @@
                     else{
                         echo "-";
                     }
-                    ?>
+                    ?></a>
                   </li>
                   <li>Жанры: 
-                    <?php 
-                        $genres = findGenresByBookID($id);
-                        foreach($genres as $key => $genre)
-                            {
-                                echo $genre['name'] . " ";
-                            }
-                    ?>
+                    <?php $genres = findGenresByBookID($id); ?>
+                        <?php foreach($genres as $key => $genre): ?>
+                            <a href="<?php echo BASE_URL.'/app/pages/books_by_genre.php?id_genre='.$genre['id_genre'].'&sort=popular'?>"><?=$genre['name'] . " "?></a>
+                        <?php endforeach; ?>
                   </li>
                   <li>Категории: 
-                    <?php 
-                        $categories = findCategoryByBookId($id);
-                        foreach($categories as $key => $category)
-                            {
-                                echo $category['name'] . " ";
-                            }
-                    ?>
+                    <?php $categories = findCategoryByBookId($id); ?>
+                       <?php foreach($categories as $key => $category): ?>
+                            <a href="<?php echo BASE_URL.'/app/pages/books_by_category.php?id_category='.$category['id_category'].'&sort=popular'?>"><?=$category['name'] . " "?></a>
+                        <?php endforeach; ?>
                   </li>
                   <li>Год издания: <?=$publish_year?></li>
                   <li>Дата поступдения: <?=$date_of_receipt?></li>
@@ -93,7 +87,9 @@
       <article class="feedback">
         <div class="feedback__headline">
           <h2 class="feedback-header">Отзывы</h2>
-          <a href="<?=BASE_URL . '/app/pages/enter_feedback.php?id='.$id?>" class="feedback__btn">Оставить отзыв</a>
+          <?php if(isset($_SESSION['id'])): ?>
+            <a href="<?=BASE_URL . '/app/pages/enter_feedback.php?id='.$id?>" class="feedback__btn">Оставить отзыв</a>
+          <?php endif;?>
         </div>
         <?php foreach($feedbacks as $key => $feedback):?>
         <div class="feedback-block 

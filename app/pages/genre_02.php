@@ -27,7 +27,7 @@
                 <li class="category-block">
                     <h2 class="category-name"><a href="<?php echo BASE_URL.'/app/pages/books_by_category.php?id_category='.$cat['id_category'].'&sort=popular'?>"><?=$cat['name']?></a></h2>
                     <ul class="genres-names">
-                        <?php $arr = selectAll('genre', ['id_category' => $cat['id_category']])?>
+                        <?php $arr = findNameByAsc('genre', ['id_category' => $cat['id_category']])?>
                         <?php foreach($arr as $keyg => $genre):?>
                             <li class="genre-name"><a href="<?php echo BASE_URL.'/app/pages/books_by_genre.php?id_genre='.$genre['id_genre'].'&sort=popular'?>"><?=$genre['name']?></a></li>
                         <?php endforeach; ?>

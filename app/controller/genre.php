@@ -5,7 +5,7 @@ $errMsg = '';
 $id = '';
 
 $genres = selectAll('genre');
-$categories = selectAll('category');
+$categories = findNameByAsc('category');
 
 //Код для формы создания жанра
 if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['genre-create']))  
@@ -74,7 +74,6 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['genre-edit']))
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
     //удалить книгу
-    deleteCond('book_has_genres', ['id_genre' => $id]);
-    delete('genre', $id);
+    deleteGenre($id);
     header('location:' . BASE_URL . "/admin/genre/index.php");
 }

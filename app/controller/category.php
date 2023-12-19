@@ -62,7 +62,37 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['category-edit']))
 //Код для удаления категории
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
-    deleteCond('genre', ['id_category' => $id]);
+    $arrGenres = selectAll('genre', ['id_category' => $id]);
+    foreach($arrGenres as $key => $val)
+    {
+        deleteGenre($val['id_genre']);
+        // $arrBook = findBooksByGenre($val['id_genre']);
+        // foreach($arrBook as $key1 => $value)
+        // {
+        //     $arr = findBookAnotherGenres($val['id_genre'], $value['id_book']);
+        //     if (!$arr)
+        //     {
+        //        deleteCond('feedback', ['id_book' => $id_book]);
+        //         deleteCond('book_has_genres', ['id_book' => $id_book]);
+        //         deleteCond('author_has_books', ['id_book' => $id_book]);
+        //         delete('book', $id_book);
+        //     }
+        // }
+    }
+    // $arrbook = findBookByCategory($id);
+    // foreach($arrbook as $key => $val)
+    // {
+    //     $id_book = $val['id_book'];
+    //     $arr = findBookAnotherGenres($id, $id_book);
+    //     if (!$arr)
+    //     {
+    //         deleteCond('feedback', ['id_book' => $id_book]);
+    //         deleteCond('book_has_genres', ['id_book' => $id_book]);
+    //         deleteCond('author_has_books', ['id_book' => $id_book]);
+    //         delete('book', $id_book);
+    //     }
+    // }
+    // deleteCond('genre', ['id_category' => $id]);
     delete('category', $id);
     header('location:' . BASE_URL . "/admin/category/index.php");
 }

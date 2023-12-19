@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/path.php';
 $errMsg = '';
 
 $feedbacks = selectAll('feedback');
+$feedbacksUser = selectAll('feedback', ['id_user' => $_SESSION['id']]);
 
 //Код для формы создания комментария
 if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['feedback-create']))  
@@ -92,7 +93,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['feedback-edit']))
 }
 
 
-//Код для удаления автора
+//Код для удаления комментария
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
     delete('feedback', $id);

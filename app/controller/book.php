@@ -58,11 +58,13 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-create']))
 
     $photo_file = $_FILES['photo'];
 
-    if ($name === '' || $annotatinon === '' || $age_restrictions === '' || $publish_year === '') 
+    if ($name === '' || $annotatinon === '' || $publish_year === '') 
     {
         $errMsg = " Не все поля заполнены";
     }elseif(strlen($name) < 2 || strlen($annotatinon) < 2) {
         $errMsg = "более 2х символов";
+    }elseif($str_book_genres === '') {
+        $errMsg = "У книги должен быть жанр";
     }else{
         $existance = selectOne('book', ['name' => $name]); 
         if ($existance)
@@ -172,11 +174,13 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-edit']))
     $book_genres = explode(',', $str_book_genres);
     $photo_file = $_FILES['photo'];
 
-    if ($name === '' || $annotatinon === '' || $age_restrictions === '' || $publish_year === '') 
+    if ($name === '' || $annotatinon === '' || $publish_year === '' || $date_of_receipt === '') 
     {
         $errMsg = " Не все поля заполнены";
     }elseif(strlen($name) < 2 || strlen($annotatinon) < 2) {
         $errMsg = "более 2х символов";
+    }elseif($str_book_genres === '') {
+        $errMsg = "У книги должен быть жанр";
     }else{
         $book = '';
         if ($photo_file['name'] != '')
@@ -240,11 +244,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['book-edit']))
 //Код для удаления книги
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['del_id']))  {
     $id = $_GET['del_id'];
-    $book = selectOne('book', ['id_book' => $id]);
-    unlink( $_SERVER['DOCUMENT_ROOT']. '\\images\books\\' . $book['photo_path']);
-    deleteCond('author_has_books', ['id_book' => $id]);
-    deleteCond('book_has_genres', ['id_book' => $id]);
-    delete('book', $id);
+    deleteBook($id);
     header('location:' . BASE_URL . "/admin/book/index.php");
 }
 

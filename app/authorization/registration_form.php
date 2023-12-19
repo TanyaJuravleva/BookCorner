@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Номер телефона</label>
+            <label for="inputPassword" class="col-sm-2 col-form-label">Номер телефона (12символов - +79999777555)</label>
             <div class="col-sm-10">
               <input value="<?=$phone?>" class="form-control" type="tel" name="phone" pattern="\+7[0-9]{10}" placeholder="+79017389504">
             </div>
