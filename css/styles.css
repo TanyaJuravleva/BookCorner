@@ -29,3 +29,12 @@ ul {
 .err {
     color: red;
 }
+
+.cont-authors {
+    padding-top: 10px;
+    padding-bottom: 26px;
+}
+
+.cont-authors__name {
+    color: rgb(37, 36, 36);
+}

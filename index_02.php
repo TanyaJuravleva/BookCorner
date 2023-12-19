@@ -36,6 +36,22 @@
             include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
         ?>
       </article>
+      <article class="main-block">
+        <h2 class="main-block__headline"><a href="<?=BASE_URL .'/app/pages/popular.php'?>">Популярные книги</a></h2>
+        <?php 
+            $books = $booksPopularLimit;
+            include $_SERVER['DOCUMENT_ROOT']."/app/pages/books_blocks.php";
+        ?>
+      </article>
+      <article class="main-block">
+        <h2 class="main-block__headline"><a href="<?php echo BASE_URL .'/app/pages/authors.php'?>">Популярные авторы</a></h2>
+        <div class="container cont-authors">
+        <?php $authors = findAuthorsByRatingLimit();?>
+        <?php foreach($authors as $key => $author): ?>
+          <h5 class="cont-authors__name"><a href="<?php echo BASE_URL .'/app/pages/author.php?id_author='.$author['id_author']?>"><?=$author['first_name'] . " " . $author['last_name']?></a></h5>
+        <?php endforeach; ?>
+        </div>
+      </article>
     </main>
   </body>
   </body>

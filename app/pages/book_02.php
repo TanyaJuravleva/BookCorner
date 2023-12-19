@@ -32,10 +32,8 @@
                 <h2 class="book-main__name"><?=$name?></h2>
                 <?php foreach($book_authors as $key => $id_author):?>
                     <h3 class="book-main__author">
-                        <?php 
-                            $author = findAuthorById($id_author); 
-                            echo $author['first_name'] . " " . $author['last_name'] . $author['patronymic'] . "<br>";
-                        ?>
+                        <?php $author = findAuthorById($id_author); ?>
+                            <a href="<?php echo BASE_URL .'/app/pages/author.php?id_author='.$id_author?>"><?=$author['first_name'] . " " . $author['last_name'] . $author['patronymic'] . "<br>"?></a>
                     </h3>
                 <?php endforeach;?>
                 <ul class="book-main__info">

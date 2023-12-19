@@ -467,6 +467,20 @@ function findAuthorsByRating()
     dbCheckError($query);
     return mysqli_fetch_all($query, MYSQLI_ASSOC);
 }
+function findAuthorsByRatingLimit()
+{
+    $sql = "SELECT  DISTINCT author.id_author, author.first_name, author.last_name, author.patronymic, AVG(feedback.rating) as rat FROM author 
+        JOIN author_has_books ON author_has_books.id_author = author.id_author
+        JOIN book ON book.id_book = author_has_books.id_book
+        LEFT JOIN feedback ON feedback.id_book = book.id_book
+         GROUP BY author.id_author
+         ORDER BY rat DESC LIMIT 5";
+    global $link;
+    $query = mysqli_query($link, $sql);
+    dbCheckError($query);
+    return mysqli_fetch_all($query, MYSQLI_ASSOC);
+}
+
 
 function findNameByAsc($table_name, $params =[])
 {
